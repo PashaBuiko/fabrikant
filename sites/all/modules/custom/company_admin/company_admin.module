@@ -1,0 +1,129 @@
+<?php
+
+
+function company_admin_menu()
+{
+
+    $items['company/%/about'] = array(
+        'title' => 'My gallery',
+        'page callback' => 'company_about_page',
+        'page arguments' => array(1,),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+        'menu_name' => 'company-menu',
+    );
+
+    $items['example/%'] = array(
+        'title' => 'My Page',
+        'page callback' => 'show_link',
+        'access callback' => 'example_user_has_role',
+        'access arguments' => array(1, array('company_admin')), // arg 1 loads the user, arg 2 is the role name
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+function show_link()
+{
+    $company = company_admin_get_company();
+    dpm($company);
+    return '<a href="/node/' . $company->nid . '/edit" > Редактировать компанию </a>';
+}
+
+function example_user_has_role($user, $roles = array())
+{
+    $current_user = user_load_by_name($user);
+    if (  $current_user && $roles) {
+        foreach ($roles as $role) {
+                 if (in_array($role, $current_user->roles)) {
+                return TRUE;
+            }
+        }
+    }
+    return false;
+}
+
+
+function company_about_page($node_title)
+{
+
+    $alias = "company/" . $node_title;
+    $path = drupal_lookup_path("source", $alias);
+    $node = menu_get_object("node", 1, $path);
+
+    return theme('demo_template', array('node' => $node)); // call a theme or you have no pass any argument in theme to change a 'nodes'=> NULL or 'pager'=>NULL
+}
+
+function company_admin_theme()
+{
+    return array(
+        'demo_template' => array(
+            'template' => 'demo-page',//this is file name of template file
+            'variables' => array('nodes' => NULL, 'pager' => NULL), //this is pass avarible of templates file
+            'path' => drupal_get_path('module', 'company_admin') . '/template' // set a path of file
+        ),
+    );
+}
+
+function company_admin_permission()         /// set new role for module permision
+{
+    return array(
+        'access company module' => array(
+            'title' => t('Access my test module'),
+            'description' => t('Доступ к первой кастомной странице моего модуля')
+        ));
+}
+
+
+function company_admin_node_validate($node, $form, &$form_state)
+{
+
+    global $user;
+    $count = db_select('node', 'n')
+        ->condition('n.uid', $user->uid)
+        ->countQuery()
+        ->execute()
+        ->fetchField();
+
+    if ($count > 0 &&  !$node->nid && $user->uid != 1 && $node->type=="company" ) {
+        form_set_error('time', t('Вы не можете создать более, чем 1 компанию'));
+    }
+}
+
+function company_admin_get_company()
+{
+    global $user;
+    $nodes = db_select('node', 'n')
+        ->fields('n')
+        ->condition('n.type', 'company')
+        ->condition('n.uid', $user->uid)
+        ->execute()
+        ->fetchAll();
+
+    return $nodes[0];
+}
+function company_admin_node_presave($node){
+    if ($node->type == 'goods' ){
+        $company = company_admin_get_company();
+        $node->field_company['und'][0]['target_id'] = $company->nid;
+        $alias = explode('/',drupal_get_path_alias('node/'.$company->nid));
+
+        $node->field_alias['und'][0]['value'] = $alias[1];
+    }
+    if ($node->type == 'company' ){
+      // $node->field_alliance['und'][0]['value'] = transliteration_get($node->title);
+    }
+
+
+
+}
+
+function company_admin_node_postsave($node, $op) {
+    //watchdog('hook_post_action_test blalbllsda', "The test {$op}d node {$node->type} id is {$node->nid} from " . __FUNCTION__);
+
+
+
+}
+
+
+
