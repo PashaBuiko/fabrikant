@@ -1,0 +1,524 @@
+<?php
+define('APROVE', '1');
+define('NOT_APROVE', '0');
+
+
+function entity_registration_menu()
+{
+    $items['my_custom_url'] = array(
+        'title' => t('Заголовок страницы'),
+        'description' => t('Эта страница скрыта от посторонних.'),
+        'page callback' => 'company_registration_page',
+        'access arguments' => array('access test module'),
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['admin/config/content/entity_registration'] = array(
+        'title'             => 'Одобрение создания компании',
+        'description'       => 'Просмотр заяввок на добавление компании',
+        'page callback'     => 'entity_list',
+        'access callback'   => 'user_access',
+        'access arguments'  => array('administer site configuration'),
+        'type'              => MENU_NORMAL_ITEM,
+
+    );
+    $items['admin/config/content/entity_registration/%/preview'] = array(
+        'title'             => 'Просмотр компании ',
+        'page callback' => 'entity_registration_preview',
+        'page arguments' => array(4),
+        'access arguments'  => array('administer site configuration'),
+        'type'              => MENU_CALLBACK,
+
+    );
+    $items['mypage'] = array(
+        'title' => 'Page name',
+        'description' => t('Some page'),
+        /* ... */
+        'menu_name' => 'management',
+        /* ... */
+    );
+
+
+
+    $items['admin/config/content/entity_registration/%/delete'] = array(
+        'title'             => 'Удалить компанию',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('entity_registration_delete_confirm', 4),
+        'access arguments'  => array('administer site configuration'),
+        'type'              => MENU_CALLBACK,
+
+    );
+
+    return $items;
+}
+
+    function entity_registration_preview( $entity_registration) {                 ///// preview  for entity reg company
+         dpm($entity_registration);
+         $entity_registration_list =    get_entity_registrtion($entity_registration);
+         dpm($entity_registration_list[0]->id);
+
+         $output = "Страна:".$entity_registration_list[0]->country  .'<br>';
+         $output .= "Область:".$entity_registration_list[0]->region .'<br>';
+         $output .= "улица:".$entity_registration_list[0]->street   .'<br>';
+         $output .= "Дом:".$entity_registration_list[0]->house      .'<br>';
+         $output .= "Корпус:".$entity_registration_list[0]->corp    .'<br>';
+         $output .= "Квартира:".$entity_registration_list[0]->flat  .'<br>';
+         $output .= "УНП:".$entity_registration_list[0]->unp        .'<br>';
+         $output .= "Сайт:".$entity_registration_list[0]->site_url  .'<br>';
+         $output .= "Примечание:".$entity_registration_list[0]->note.'<br>';
+         $output .= "ФИО:".$entity_registration_list[0]->fio        .'<br>';
+         $output .= "Email:".$entity_registration_list[0]->email    .'<br>';
+         $output .= "Телефон:".$entity_registration_list[0]->phone.'<br>';
+         $output .= '<a href="/admin/config/content/entity_registration" class="form-submit" >Назад </a> ';
+
+         return  $output;
+
+
+    }
+
+
+
+function entity_registration_delete_confirm($form, &$form_state, $entity_registration) {                 ///// delete action for entity reg company
+
+
+    $form['id'] = array('#type' => 'value', '#value' => $entity_registration);
+    return confirm_form($form,
+        t('Are you sure you want to delete %title?', array('%title' => 'данный запрос на компанию?')),
+        'admin/config/content/entity_registration',
+        t('This action cannot be undone.'),
+        t('Delete'),
+        t('Cancel')
+    );
+}
+function entity_registration_delete_confirm_submit($form, &$form_state) {
+    if($form_state['values']['confirm']) {
+
+        $entity_registration_id = ($form_state['values']['id']);
+        $entity_registration_deleted = db_delete('entity_registration')
+            ->condition('id', $entity_registration_id)
+            ->execute();
+        drupal_set_message(t('RSS Feed deleted!'));
+        drupal_goto('admin/config/content/entity_registration');
+
+    }
+}
+
+
+
+function entity_registration_permission()         /// set new role for module permision
+{
+    return array(
+        'access test module' => array(
+            'title' => t('Access my test module'),
+            'description' => t('Доступ к первой кастомной странице моего модуля')
+        ),
+        'access custom node tab' => array(
+            'title' => t('Access my custom tab'),
+            'description' => t('Доступ к кастомному табу ноды')
+        ),
+    );
+}
+
+function entity_list()             ///display admin page with aproval
+{
+    $header = array(
+        array('data' => t('ID ')),
+        array('data' => t('ФИО / Должность ')),
+        array('data' => t('E-mail')),
+        array('data' => t('Actions')),
+        array('data' => t('Одобрение'))
+    );
+    $entity_registration = db_select('entity_registration', 'n')
+        ->fields('n', array('id', 'fio', 'email'))
+        ->execute()->fetchAll();
+    $row = array();
+    if ($entity_registration) {
+        foreach ($entity_registration as $e_reg) {
+            $actions = array(
+                l(t('preview'), 'admin/config/content/entity_registration/' . $e_reg->id . '/preview'),
+                l(t('delete'), 'admin/config/content/entity_registration/' . $e_reg->id . '/delete'),
+            );
+            $form = drupal_get_form('company_aproval_form', $e_reg->id  );
+
+            $form['id'] = array(
+                '#type' => 'hidden',
+                '#name' => 'id',
+                '#title' => '',
+                '#value' => $e_reg->id
+            );
+
+            $row [] = array(
+                array('data' => $e_reg->id),
+                array('data' => $e_reg->fio),
+                array('data' => $e_reg->email),
+                array('data' => implode(' | ', $actions)),
+                array('data' => drupal_render($form))
+            );
+        }
+    }
+    $output = theme('table', array(
+        'header' => $header,
+        'rows' => $row,
+    ));
+    return $output;
+
+}
+
+
+function entity_registration_delete($entity_registration)
+{
+    dpm($entity_registration);
+    print_r($entity_registration);
+
+    $entity_registration_deleted = db_delete('entity_registration')
+        ->condition('id', $entity_registration['id'])
+        ->execute();
+    drupal_set_message(t('RSS Feed deleted!'));
+    drupal_goto('admin/config/content/entity_registration');
+}
+function company_aproval_form($form, &$form_state, $value){         //// form for admin aproval
+    $form = array();
+
+   $entity_registration_status= get_entity_registrtion($value);
+   ( $entity_registration_status[0]->status == 1) ?  $default = true : $default=  false;
+
+   $form['aprove'] = array(
+        '#type' => 'checkbox',
+        '#title' => '',
+        '#default_value' =>$default
+    );
+    $form['id'] = array(
+      '#type'=> 'hidden',
+      '#value' => $value
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Подтвердить регистрацию'
+    );
+
+    return $form;
+}
+
+function company_aproval_form_submit($form, &$form_state){         //// form for admin aproval
+
+    $id =  $form_state['values']['id'];
+    $aprove =  $form_state['values']['aprove'];
+
+    $login = 'user-' . drupal_random_key(8);
+    $password = drupal_random_key(12);
+
+    $entity_registration = get_entity_registrtion($id);
+
+    if ($entity_registration[0]->user_id ==''){
+        $new_user = array(
+            'name' => $login,
+            'pass' => $password, // note: do not md5 the password
+            'mail' => $entity_registration[0]->email,
+            'status' => 1,
+            'init' => $entity_registration[0]->email,
+            'roles' => array(
+                DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+                4 => 'custom role',
+            ),
+        );
+        user_save('', $new_user);
+        contact_mail($login, $password);
+        $uid = get_user_by_login($login);
+        $q = db_update('entity_registration'); // выбираем созданную нами таблицу в БД
+        $q->fields(
+            array(
+               'user_id'=>$uid
+            )
+        );
+        $q->condition('id',$id );
+        $q->execute();
+    }
+    $uid = get_user_by_login($login);
+
+    $node = new stdClass();
+    $node->type = 'company';
+    $node->title = ' Заголовок поста';
+    $node->language = LANGUAGE_NONE;
+    $node->body[LANGUAGE_NONE][0]['value'] = 'Текст нашего поста';
+    $node->body[LANGUAGE_NONE][0]['summary'] = 'Анонс';
+    $node->body[LANGUAGE_NONE][0]['format'] = 'filtered_html';
+    $node->uid = $uid;
+    $node->status = 1;
+    $node->promote = 1;
+    node_save($node);
+
+
+
+    $q = db_update('entity_registration'); // выбираем созданную нами таблицу в БД
+    $q->fields(
+        array(
+            'status' => APROVE,
+            'login' =>$login,
+            'password'=>$password,
+            'user_id'=> $uid,
+            'status'=>$aprove,
+        )
+    );
+     $q->condition('id',$id );
+     $res = $q->execute();
+     if ($res) {
+
+        drupal_set_message('Данная компания успешн одобрена', 'status');
+     } else {
+        drupal_set_message('Ошибка одобрения создания компании ', 'error');
+     }
+
+
+
+
+
+
+}
+
+
+
+function company_registration_form($form, &$form_state)
+{
+    $form = array();
+
+    $form['form_owner'] = array(
+        '#type' => 'select',
+        '#title' => 'Форма собственности',
+        '#required' => TRUE,
+        '#options' => array(
+            0 => t('Государственная'),
+            1 => t('Частная'),
+        ),
+        '#default_value' => 'Сделайте выбор',
+        '#empty_option' => 'Сделайте выбор',
+        '#attributes' => array('placeholder' => array('Сделайте выбор')),
+    );
+    $form['address'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('Адресс компании*'),
+    );
+    $form['address']['country'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Страна',
+        '#required' => TRUE,
+
+    );
+    $form['address']['region'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Область',
+        '#required' => TRUE,
+
+    );
+    $form['address']['locality'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Населенный пункт',
+        '#required' => TRUE,
+    );
+    $form['address']['street'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Улица',
+        '#required' => TRUE,
+    );
+    $form['address']['house'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Дом',
+        '#required' => TRUE,
+    );
+    $form['address']['corp'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Корпус',
+        '#required' => TRUE,
+    );
+
+    $form['address']['flat'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Квартира / Офис',
+        '#required' => TRUE,
+    );
+    $form['activity_field'] = array(
+        '#type' => 'select',
+        '#title' => 'Сфера деятельности',
+        '#required' => TRUE,
+        '#options' => array(
+
+            1 => t('Игорная'),
+            2 => t('Туризм'),
+            3 => t('Игорная'),
+            4 => t('Туризм'),
+            5 => t('Игорная'),
+            6 => t('Туризм'),
+        ),
+        '#multiple' => 'multiple',
+        '#default_value' => 'Сделайте выбор',
+        '#empty_option' => 'Сделайте выбор',
+        '#empty_value' => 'Сделайте выбор',
+        '#attributes' => array('placeholder' => array('Сделайте выбор')),
+    );
+
+    $form['unp'] = array(
+        '#type' => 'textfield',
+        '#title' => 'УНП',
+        '#required' => TRUE,
+
+    );
+    $form['site_url'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Адрес сайта',
+
+    );
+    $form['note'] = array(
+        '#type' => 'textarea',
+        '#title' => 'Примечание',
+
+    );
+    $form['contacts'] = array(
+        '#type' => 'fieldset',
+        '#title' => 'Контактное лицо',
+    );
+
+    $form['contacts']['fio'] = array(
+        '#type' => 'textfield',
+        '#title' => 'ФИО / Должность',
+        '#required' => TRUE,
+    );
+
+    $form['contacts']['email'] = array(
+        '#type' => 'textfield',
+        '#title' => 'E-mail',
+        '#required' => TRUE,
+    );
+    $form['contacts']['phone'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Телефон',
+        '#required' => TRUE,
+    );
+
+    $form['conditions'] = array(
+        '#type' => 'checkbox',
+        '#title' => 'С условиями договора об использовании ресурса согласен',
+
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Зарегистрироваться'
+    );
+    return $form;
+}
+
+
+function company_registration_page()                /// display blank for registration
+{
+    drupal_add_css(drupal_get_path('module', 'entity_registration') . '/css/jquery.dropdown.css');
+    drupal_add_js(drupal_get_path('module', 'entity_registration') . '/js/jquery.dropdown.js');
+    drupal_add_js(drupal_get_path('module', 'entity_registration') . '/js/entity_registration_script.js');
+
+    $form = drupal_get_form('company_registration_form');
+    $form = drupal_render($form);
+    $output = '<div class="registration_company_blank"><h1 class="title"> Регистрационная форма участника </h1>';
+    $output .= $form;
+    $output .= '</div>';
+    return $output;
+}
+
+
+function company_registration_form_submit($form, &$form_state)
+{
+    $login = 'user' . drupal_random_key(8);
+    $password = drupal_random_key(12);
+
+    $new_user = array(
+        'name' => $login,
+        'pass' => $password, // note: do not md5 the password
+        'mail' => $form_state['values']['email'],
+        'status' => 1,
+        'init' => $form_state['values']['email'],
+        'roles' => array(
+            DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+            4 => 'custom role',
+        ),
+    );
+
+// The first parameter is sent blank so a new user is created.
+    user_save('', $new_user);
+    $uid = get_user_by_login($login);
+
+    $q = db_insert('entity_registration'); // выбираем созданную нами таблицу в БД
+
+    // с помощью метода fields заполняем таблицу введенными значениями
+    $q->fields(
+        array(
+            'form_owner' => $form_state['values']['form_owner'],
+            'country' => $form_state['values']['country'],
+            'region' => $form_state['values']['region'],
+            'locality' => $form_state['values']['locality'],
+            'street' => $form_state['values']['street'],
+            'house' => $form_state['values']['house'],
+            'corp' => $form_state['values']['corp'],
+            'flat' => $form_state['values']['flat'],
+            'activity_field' => $form_state['values']['activity_field'],
+            'unp' => $form_state['values']['unp'],
+            'site_url' => $form_state['values']['site_url'],
+            'note' => $form_state['values']['note'],
+            'fio' => $form_state['values']['fio'],
+            'email' => $form_state['values']['email'],
+            'phone' => $form_state['values']['phone'],
+            'conditions' => $form_state['values']['conditions'],
+           /* 'login' => $login,
+            'password' => $password,*/
+            'type' => 0,
+            'user_id' => $uid,
+            'status'=> 0
+
+        )
+    );
+
+
+    // сохраняем в переменную результаты запроса
+    $res = $q->execute();
+
+    // делаем проверку
+    if ($res) {
+       //contact_mail($login, $password);
+       drupal_set_message('Форма успешно отправлена', 'status');
+    } else {
+        drupal_set_message('Ошибка отправки формы', 'error');
+    }
+}
+
+
+function contact_mail($login, $password)
+{
+    $to = 'pasha.buiko@mail.ru';
+    $subject = 'the subject';
+    $message = "<html><head></head><body><b>Спасибо за регистрацию !<br>  Для входа в систему, используйте следующий логин и пароль: <br/>логин : " . $login . "<br> Пароль: " . $password . "<br/></b></body></html>";
+    $headers = 'Content-Type: text/html;charset=utf-8' . "\r\n" .
+        'From: webmaster@example.com' . "\r\n" .
+        'Reply-To: webmaster@example.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+
+}
+
+function get_user_by_login($login)
+{
+
+    $user_id = db_query("
+   SELECT uid FROM {users}
+   WHERE name = :login
+   ", array(':login' => $login))->fetchField();
+
+    return $user_id;
+}
+
+function get_entity_registrtion($id){
+    $entity_registration  = db_query("
+   SELECT * FROM {entity_registration}
+   WHERE id = :id
+   ", array(':id' => $id))->fetchAll();
+
+    return $entity_registration;
+}
+
+
+?>

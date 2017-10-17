@@ -1,0 +1,45 @@
+<?php
+
+
+
+
+function company_admin_menu(){
+    $items['company/%/about']=array(
+        'title'=>'My gallery',
+        'page callback'=>'company_about_page',
+        'page arguments' => array(1,),
+        'access callback'=>TRUE,
+        'type'=> MENU_NORMAL_ITEM,
+        'menu_name' => 'company-menu',
+    );
+    return $items;
+}
+
+function company_about_page($node_title){
+
+    $alias = "company/".$node_title;
+    $path = drupal_lookup_path("source", $alias);
+    $node = menu_get_object("node", 1, $path);
+
+    return  theme('demo_template', array('node' => $node)); // call a theme or you have no pass any argument in theme to change a 'nodes'=> NULL or 'pager'=>NULL
+}
+function company_admin_theme()
+{
+    return array(
+        'demo_template' => array(
+            'template' => 'demo-page',//this is file name of template file
+            'variables' => array('nodes' => NULL,'pager' => NULL), //this is pass avarible of templates file
+            'path' => drupal_get_path('module', 'company_admin').'/template' // set a path of file
+        ),
+    );
+}
+
+function company_admin_permission()         /// set new role for module permision
+{
+    return array(
+        'access company module' => array(
+            'title' => t('Access my test module'),
+            'description' => t('Доступ к первой кастомной странице моего модуля')
+        ));
+}
+

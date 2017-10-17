@@ -1,0 +1,125 @@
+<?php
+
+function entity_registration_schema(){
+    $schema = array(); //
+
+    $schema['entity_registration'] = array(
+        'description' => 'table for local storage info abaot registration ',
+        'fields' => array(
+            'id' => array(
+                'type' => 'serial',
+                'unsignet' => TRUE,
+                'not null' => TRUE,
+            ),
+            'form_owner' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'country' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'region' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'locality' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'street' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'house' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'corp' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'flat' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'activity_field' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'unp' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'site_url' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'note' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'fio' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'email' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'phone' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'conditions' => array(
+                'type' => 'int',
+                'default' => 0,
+            ),
+            'login' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+            'password' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+            ),
+             'type' => array(
+               'type' => 'varchar',
+               'length' => 128,
+               'default' => '',
+             ),
+              'user_id' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+              ),
+              'status' => array(
+                'type' => 'varchar',
+                'length' => 128,
+                'default' => '',
+              ),
+        ),
+        'primary key' => array('id'), // ��������� primary key
+    );
+
+    return $schema;
+}
+
+?>
