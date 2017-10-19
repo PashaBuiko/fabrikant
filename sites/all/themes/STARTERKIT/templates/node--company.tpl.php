@@ -123,7 +123,14 @@
     ?>
 </nav>
 
-    <?php print render($content['field_slider']); ?>
+    <div class="tab1">
+        <div class="compnay_slider">
+            <?php print render($content['field_slider']); ?>
+
+        </div>
+    </div>
+
+
 
     <?php print render($content['body']); ?>
 

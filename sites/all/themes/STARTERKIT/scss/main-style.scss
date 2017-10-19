@@ -1177,15 +1177,15 @@ footer {
     display: inline-block;
     vertical-align: top;
   }
-  .up-block{
-    display:flex;
+  .up-block {
+    display: flex;
     justify-content: space-between;
   }
   .slogan_block {
     display: inline-block;
     vertical-align: top;
     padding-left: 60px;
-    flex-grow:6;
+    flex-grow: 6;
     p {
       margin: 0;
       font-family: 'OpenSans Regular';
@@ -1198,22 +1198,22 @@ footer {
     }
   }
   .pb__contacts_block {
-    font-size:0;
-    .left{
-       /* display: inline-block;
-        width:50%;*/
-        vertical-align: top;
-      font-size:18px;
+    font-size: 0;
+    .left {
+      /* display: inline-block;
+       width:50%;*/
+      vertical-align: top;
+      font-size: 18px;
     }
-    .right{
+    .right {
       /*display: inline-block;
       width:50%;*/
       vertical-align: top;
-      font-size:18px;
+      font-size: 18px;
     }
-    p{
-      margin:0 ;
-      margin-bottom:10px;
+    p {
+      margin: 0;
+      margin-bottom: 10px;
     }
   }
 
@@ -1385,67 +1385,137 @@ footer {
 
 /* node company*/
 
-.field-name-field-phone,.field-name-field-schedule ,.field-name-field-address {
+.field-name-field-phone, .field-name-field-schedule, .field-name-field-address {
   position: relative;
 }
-.field-name-field-phone:before{
-  content:'';
+
+.field-name-field-phone:before {
+  content: '';
   position: absolute;
-  background:url('../images/phone.png') no-repeat;
-  -webkit-background-size: 40px ;
-  background-size: 40px ;
-  width:44px;
-  height:44px;
-  left:-55px;
-  top:4px;
+  background: url('../images/phone.png') no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
+  height: 44px;
+  left: -55px;
+  top: 4px;
 }
 
 .field-name-field-schedule, .field-name-field-phone {
-  margin-top:30px;
+  margin-top: 30px;
 }
-.field-name-field-address:before{
-  content:'';
+
+.field-name-field-address:before {
+  content: '';
   position: absolute;
-  background:url('../images/address.png') no-repeat;
-  -webkit-background-size: 40px ;
-  background-size: 40px ;
-  width:44px;
+  background: url('../images/address.png') no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
   height: 55px;
   left: -55px;
   top: -20px;
 }
-.field-name-field-schedule:before{
-  content:'';
+
+.field-name-field-schedule:before {
+  content: '';
   position: absolute;
-  background:url('../images/clock.png') no-repeat;
-  -webkit-background-size: 40px ;
-  background-size: 40px ;
-  width:44px;
-  height:44px;
-  left:-55px;
-  top:-8px;
+  background: url('../images/clock.png') no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
+  height: 44px;
+  left: -55px;
+  top: -8px;
 }
-.company-navigation{
+
+.company-navigation {
   background: #9575b2;
-  ul{
+  ul {
     display: flex;
     justify-content: space-around;
-    padding:0;
+    padding: 0;
     li {
       list-style: none;
-      padding-left:20px;
-      padding-right:20px;
-      &.active{
+      padding-left: 20px;
+      padding-right: 20px;
+      &.active {
         background: #bc9adb;
+        a{
+          color: black;
+        }
       }
-      a{
-        color:white;
-        line-height:50px;
-        font-size:22px;
-        text-decoration: none;
+      &:hover {
+        background: #bc9adb;
+        cursor: pointer;
+        transition-duration: 0.5s;
+        a{
+           color:black;
+           transition-duration: 0.5s;
+           &:not(:hover){
+             transition-duration: 0.5s;
+           }
+        }
       }
+      &:not(:hover){
+        transition-duration: 0.5s;
+      }
+
+    }
+
+
+    a {
+      color: white;
+      line-height: 50px;
+      font-size: 22px;
+      text-decoration: none;
     }
   }
-
-
 }
+.compnay_slider{
+  max-width:70%;
+  .slick-prev{
+    background: #0fa57e;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    left:-15px;
+      &:before{
+      content: '';
+      width:30px;
+      height:30px;
+      position: absolute;
+      background: url('../images/arrow-prev-slider.png') no-repeat;
+      background-position: center;
+      background-size: 12px;
+      top:0;
+      left:0;
+    }
+
+  }
+  .slick-next {
+    background: #0fa57e;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 999;
+    width: 30px;
+    height: 30px;
+    right: 5px;
+    &:before {
+      content: '';
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      background: url('../images/arrow-next-slider.png') no-repeat;
+      background-position: center;
+      background-size: 12px;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
