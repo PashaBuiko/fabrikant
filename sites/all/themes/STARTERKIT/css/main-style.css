@@ -861,11 +861,15 @@ footer {
   width: 220px;
   display: inline-block;
   vertical-align: top; }
-.node-company .field-name-field-slogan {
+.node-company .up-block {
+  display: flex;
+  justify-content: space-between; }
+.node-company .slogan_block {
   display: inline-block;
   vertical-align: top;
-  padding-left: 60px; }
-  .node-company .field-name-field-slogan p {
+  padding-left: 60px;
+  flex-grow: 6; }
+  .node-company .slogan_block p {
     margin: 0;
     font-family: 'OpenSans Regular';
     color: #000000;
@@ -877,8 +881,20 @@ footer {
     text-align: left;
     max-width: 424px; }
 .node-company .pb__contacts_block {
-  display: inline-block;
-  vertical-align: top; }
+  font-size: 0; }
+  .node-company .pb__contacts_block .left {
+    /* display: inline-block;
+     width:50%;*/
+    vertical-align: top;
+    font-size: 18px; }
+  .node-company .pb__contacts_block .right {
+    /*display: inline-block;
+    width:50%;*/
+    vertical-align: top;
+    font-size: 18px; }
+  .node-company .pb__contacts_block p {
+    margin: 0;
+    margin-bottom: 10px; }
 
 .fivestar-widget {
   margin-bottom: 25px; }
@@ -1009,5 +1025,63 @@ footer {
       color: #000000;
       font-size: 26px;
       font-family: "OpenSans SemiBold"; }
+
+/* node company*/
+.field-name-field-phone, .field-name-field-schedule, .field-name-field-address {
+  position: relative; }
+
+.field-name-field-phone:before {
+  content: '';
+  position: absolute;
+  background: url("../images/phone.png") no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
+  height: 44px;
+  left: -55px;
+  top: 4px; }
+
+.field-name-field-schedule, .field-name-field-phone {
+  margin-top: 30px; }
+
+.field-name-field-address:before {
+  content: '';
+  position: absolute;
+  background: url("../images/address.png") no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
+  height: 55px;
+  left: -55px;
+  top: -20px; }
+
+.field-name-field-schedule:before {
+  content: '';
+  position: absolute;
+  background: url("../images/clock.png") no-repeat;
+  -webkit-background-size: 40px;
+  background-size: 40px;
+  width: 44px;
+  height: 44px;
+  left: -55px;
+  top: -8px; }
+
+.company-navigation {
+  background: #9575b2; }
+  .company-navigation ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 0; }
+    .company-navigation ul li {
+      list-style: none;
+      padding-left: 20px;
+      padding-right: 20px; }
+      .company-navigation ul li.active {
+        background: #bc9adb; }
+      .company-navigation ul li a {
+        color: white;
+        line-height: 50px;
+        font-size: 22px;
+        text-decoration: none; }
 
 /*# sourceMappingURL=main-style.css.map */

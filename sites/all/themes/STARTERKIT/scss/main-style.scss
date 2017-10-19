@@ -1177,10 +1177,15 @@ footer {
     display: inline-block;
     vertical-align: top;
   }
-  .field-name-field-slogan {
+  .up-block{
+    display:flex;
+    justify-content: space-between;
+  }
+  .slogan_block {
     display: inline-block;
     vertical-align: top;
     padding-left: 60px;
+    flex-grow:6;
     p {
       margin: 0;
       font-family: 'OpenSans Regular';
@@ -1193,8 +1198,23 @@ footer {
     }
   }
   .pb__contacts_block {
-    display: inline-block;
-    vertical-align: top;
+    font-size:0;
+    .left{
+       /* display: inline-block;
+        width:50%;*/
+        vertical-align: top;
+      font-size:18px;
+    }
+    .right{
+      /*display: inline-block;
+      width:50%;*/
+      vertical-align: top;
+      font-size:18px;
+    }
+    p{
+      margin:0 ;
+      margin-bottom:10px;
+    }
   }
 
 }
@@ -1296,6 +1316,7 @@ footer {
           font-size: 26px;
           font-weight: 600;
           margin: 15px auto;
+
         }
         p {
           margin: 0;
@@ -1359,5 +1380,72 @@ footer {
       font-family: "OpenSans SemiBold";
     }
   }
+
+}
+
+/* node company*/
+
+.field-name-field-phone,.field-name-field-schedule ,.field-name-field-address {
+  position: relative;
+}
+.field-name-field-phone:before{
+  content:'';
+  position: absolute;
+  background:url('../images/phone.png') no-repeat;
+  -webkit-background-size: 40px ;
+  background-size: 40px ;
+  width:44px;
+  height:44px;
+  left:-55px;
+  top:4px;
+}
+
+.field-name-field-schedule, .field-name-field-phone {
+  margin-top:30px;
+}
+.field-name-field-address:before{
+  content:'';
+  position: absolute;
+  background:url('../images/address.png') no-repeat;
+  -webkit-background-size: 40px ;
+  background-size: 40px ;
+  width:44px;
+  height: 55px;
+  left: -55px;
+  top: -20px;
+}
+.field-name-field-schedule:before{
+  content:'';
+  position: absolute;
+  background:url('../images/clock.png') no-repeat;
+  -webkit-background-size: 40px ;
+  background-size: 40px ;
+  width:44px;
+  height:44px;
+  left:-55px;
+  top:-8px;
+}
+.company-navigation{
+  background: #9575b2;
+  ul{
+    display: flex;
+    justify-content: space-around;
+    padding:0;
+    li {
+      list-style: none;
+      padding-left:20px;
+      padding-right:20px;
+      &.active{
+        background: #bc9adb;
+      }
+      a{
+        color:white;
+        line-height:50px;
+        font-size:22px;
+        text-decoration: none;
+      }
+    }
+  }
+
 
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/HTML4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <title>Вложенный список</title>
+    <style>
+        li { list-style-type: none; } /* Убираем исходную нумерацию */
+        ol { counter-reset: list1; } /* Инициируем счетчик */
+        ol li:before {
+            counter-increment: list1; /* Увеличиваем значение счетчика */
+            content: counter(list1) ". "; /* Выводим значение */
+        }
+        ol ol { counter-reset: list2; } /* Инициируем счетчик вложенного списка */
+        ol ol li:before {
+            counter-increment: list2; /* Увеличиваем значение счетчика */
+            content: counter(list1) "." counter(list2) ". "; /* Выводим значение типа 2.1, 2.2,... */
+        }
+    </style>
+</head>
+<body>
+<ol>
+    <li>Пункт
+        <ol>
+            <li>Подпункт</li>
+            <li>Подпункт</li>
+            <li>Подпункт</li>
+        </ol>
+    </li>
+    <li>Пункт
+        <ol>
+            <li>Подпункт</li>
+            <li>Подпункт</li>
+        </ol>
+    </li>
+</ol>
+</body>
+</html>

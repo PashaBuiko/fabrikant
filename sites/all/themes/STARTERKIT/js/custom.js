@@ -21,11 +21,14 @@
             })
 
 
-            console.log($('.average_display').length)
+
             if (! $('.average_display').length ) {
                 $( "<span class='average_display'></span>" ).insertBefore( $( ".fivestar-widget-5" ) );
             }
             $(".average_display").text($('.average_value').text()+"/ " );
+
+
+             $('.company-navigation a.active').parent().addClass('active').children().removeClass('active');
 
         }
     };

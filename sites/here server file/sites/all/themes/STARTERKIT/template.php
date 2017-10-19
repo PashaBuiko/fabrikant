@@ -312,7 +312,7 @@ function company_custom_menu(){
 
     foreach($menu_array as $key=> $item){
         switch ($index){
-            case '0' : $menu_array[$key]['href'] = $company_base_path.'/about'; break;
+            case '0' : $menu_array[$key]['href'] = $company_base_path.'/about'; $menu_array[$key]['class'] = 'about';break;
             case '1' : $menu_array[$key]['href'] = $company_base_path.'/products'; break;
             case '2' : $menu_array[$key]['href'] = $company_base_path.'/news'; break;
             case '3' : $menu_array[$key]['href'] = $company_base_path.'/gallery'; break;

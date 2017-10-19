@@ -87,37 +87,41 @@
    <div class="node-title"> <?php print $node->title;?></div>
 
 
-
-
-
     <?php  print render($content['field_fivestar']); ?>
 
 
     <?php if (isset($node->field_logo['und'])) { $image = file_create_url($node->field_logo['und'][0]['uri']);
 
     ?>
-    <img src="<?=$image;?>" class="logo_image"/>
+    <div class="up-block">
+        <div class="image">   <img src="<?=$image;?>" class="logo_image"/></div>
+
     <?}?>
-    <?php print render($content['field_slogan']); ?>
-
-    <div class="pb__contacts_block">
-        <div class="left">
-            <?php print render($content['field_phone']); ?>
-            <?php print render($content['field_schedule']); ?>
-        </div>
-     <div class="right">
-         <?php print render($content['field_address']); ?>
-     </div>
-
+    <div class="slogan_block">
+        <?php print render($content['field_slogan']); ?>
     </div>
 
 
-<?php
+    <div class="pb__contacts_block">
+        <div class="left">
 
-   print company_custom_menu();
+        </div>
+     <div class="right">
+         <?php print render($content['field_address']); ?>
+         <?php print render($content['field_phone']); ?>
+         <?php print render($content['field_schedule']); ?>
 
-?>
+     </div>
 
+    </div>
+    </div>
+
+<nav class="company-navigation">
+    <?php
+         print company_custom_menu();
+
+    ?>
+</nav>
 
     <?php print render($content['field_slider']); ?>
 
