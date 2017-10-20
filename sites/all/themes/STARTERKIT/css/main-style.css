@@ -858,7 +858,7 @@ footer {
   margin-top: 50px;
   margin-bottom: 15px; }
 .node-company .logo_image {
-  width: 220px;
+  width: 320px;
   display: inline-block;
   vertical-align: top; }
 .node-company .up-block {
@@ -1098,7 +1098,12 @@ footer {
       text-decoration: none; }
 
 .compnay_slider {
-  max-width: 70%; }
+  max-width: 100%; }
+  .compnay_slider .slick-initialized .slick-slide {
+    margin-right: 15px; }
+    .compnay_slider .slick-initialized .slick-slide img {
+      width: 100%;
+      height: auto; }
   .compnay_slider .slick-prev {
     background: #0fa57e;
     -webkit-border-radius: 50%;
@@ -1137,5 +1142,88 @@ footer {
       background-size: 12px;
       top: 0;
       left: 0; }
+
+.tab .left-side {
+  max-width: 60%; }
+
+.tab1 {
+  display: flex;
+  justify-content: space-between; }
+  .tab1 h2 {
+    font-family: 'OpenSans Regular';
+    color: #000000;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 40px;
+    text-align: left;
+    margin-top: 50px;
+    margin-bottom: 50px; }
+
+.grey-block {
+  margin-top: 45px;
+  padding: 15px;
+  padding-left: 30px;
+  background: #ecf0f0;
+  margin-bottom: 20px; }
+  .grey-block .field-item {
+    font-family: "OpenSans SemiBold";
+    font-size: 18px; }
+
+.tab {
+  display: none; }
+  .tab.active {
+    display: flex; }
+
+.term_tree .item-list ul {
+  padding-left: 0; }
+  .term_tree .item-list ul li {
+    list-style: none;
+    margin-bottom: 20px; }
+    .term_tree .item-list ul li .list-tree-element {
+      padding: 3px  5px; }
+      .term_tree .item-list ul li .list-tree-element.active {
+        background: #71c6ad;
+        position: relative; }
+        .term_tree .item-list ul li .list-tree-element.active:before {
+          content: '';
+          position: absolute;
+          right: -28px;
+          top: 0px;
+          border: 14px solid transparent;
+          border-left: 14px solid #71c6ad; }
+    .term_tree .item-list ul li a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      font-family: "OpenSans Regular"; }
+    .term_tree .item-list ul li.open .item-list {
+      display: block; }
+    .term_tree .item-list ul li ul {
+      padding-left: 30px;
+      padding-top: 10px; }
+      .term_tree .item-list ul li ul li {
+        margin-bottom: 5px; }
+.term_tree .item-list span {
+  position: absolute;
+  left: 0px;
+  background: #0fa57e;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  color: white;
+  cursor: pointer;
+  display: inline-block; }
+.term_tree .item-list .item-list {
+  display: none; }
+  .term_tree .item-list .item-list span {
+    display: none; }
+
+.tab2 #edit-field-goods-category-tid-wrapper,
+.tab2 #edit-submit-company-goods {
+  display: none; }
+.tab2 .left-side {
+  padding-left: 40px;
+  padding-right: 80px; }
 
 /*# sourceMappingURL=main-style.css.map */

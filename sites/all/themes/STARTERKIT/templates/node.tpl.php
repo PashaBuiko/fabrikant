@@ -112,7 +112,9 @@
   </div>
 
   <?php print render($content['links']); ?>
+    <div class="tab5">
+        <?php print render($content['comments']); ?>
 
-  <?php print render($content['comments']); ?>
+    </div>
 
 </div><!-- /.node -->

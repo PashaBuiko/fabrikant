@@ -304,10 +304,7 @@ function STARTERKIT_preprocess_page(&$variables, $hook)
 function company_custom_menu(){
     $menu_array = menu_navigation_links('menu-company-menu');
     $index = 0 ;
-
-
     $current_path =explode('/', drupal_get_path_alias($_GET['q']));
-
     $company_base_path = $current_path[0].'/'.$current_path[1];
 
     foreach($menu_array as $key=> $item){

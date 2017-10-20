@@ -123,28 +123,71 @@
     ?>
 </nav>
 
-    <div class="tab1">
-        <div class="compnay_slider">
-            <?php print render($content['field_slider']); ?>
+    <div class="tab tab1 active">
+        <div class="left-side">
+            <h2>О компании</h2>
+            <div class="compnay_slider">
+                <?php print render($content['field_slider']); ?>
 
+            </div>
+            <div class="content">
+                <?php print render($content['body']); ?>
+            </div>
         </div>
+        <div class="right-side">
+            <div class="grey-block">
+                <?php
+
+                    print render($content['field_fabriks_type']);
+                    print render($content['field_unp']);
+
+
+                ?>
+            </div>
+            <?php   ///// left side
+
+
+
+
+            //    here must popoular news \\
+            print render($content['field_baner']);
+
+            ?>
+        </div>
+    </div>
+
+    <div class="tab tab2 ">
+        <div class="left-side">
+            <div class="term_tree">
+                          <?php
+        //   dpm( taxonomy_get_tree('goods_category'));
+ //print_r( taxonomy_get_tree(5));
+
+         //  $tree= taxonomy_get_nested_tree(5);
+        // $output=theme_taxonomy_nested_tree($tree);
+         //  echo $output;
+
+
+           echo tax_tree_taxonomy_tree('goods_category');
+
+           ?>
+        </div>
+        </div>
+        <div class="right-side">
+            <?php
+            print views_embed_view('company_goods', 'page',arg(1));
+            ?>
+        </div>
+
     </div>
 
 
 
-    <?php print render($content['body']); ?>
+    <div class="tab tab5">
 
-    <?php   ///// left side
+        <?php print render($content['comments']); ?>
 
-
-    print render($content['field_fabriks_type']);
-    print render($content['field_unp']);
-
-    //    here must popoular news \\
-    print render($content['field_baner']);
-
-    ?>
-
+    </div>
 
 
 
@@ -166,19 +209,5 @@
             <?php print $submitted; ?>
         </div>
     <?php endif; ?>
-
-    <div class="content"<?php print $content_attributes; ?>>
-        <?php
-        // We hide the comments and links now so that we can render them later.
-        hide($content['comments']);
-        hide($content['links']);
-      //  print render($content);
-        //print render($content['field_fivestar']);
-        ?>
-    </div>
-
-    <?php print render($content['links']); ?>
-
-    <?php print render($content['comments']); ?>
 
 </div><!-- /.node -->

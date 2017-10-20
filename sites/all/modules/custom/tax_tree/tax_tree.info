@@ -1,0 +1,4 @@
+name = tax tree
+description = Вывод таксономии
+package = custom
+core = 7.x

@@ -304,10 +304,7 @@ function STARTERKIT_preprocess_page(&$variables, $hook)
 function company_custom_menu(){
     $menu_array = menu_navigation_links('menu-company-menu');
     $index = 0 ;
-    dpm($menu_array);
-
     $current_path =explode('/', drupal_get_path_alias($_GET['q']));
-
     $company_base_path = $current_path[0].'/'.$current_path[1];
 
     foreach($menu_array as $key=> $item){
@@ -325,3 +322,40 @@ function company_custom_menu(){
     return theme('links__company-menu', array('links' => $menu_array));
 }
 
+function taxonomy_get_nested_tree($terms = array(), $max_depth = NULL, $parent = 0, $parents_index = array(), $depth = 0) {
+    if (is_int($terms)) {
+        $terms = taxonomy_get_tree($terms);
+    }
+    foreach($terms as $term) {
+        foreach($term->parents as $term_parent) {
+            if ($term_parent == $parent) {
+                $return[$term->tid] = $term;
+            }
+            else {
+                $parents_index[$term_parent][$term->tid] = $term;
+            }
+        }
+    }
+    foreach($return as &$term) {
+        if (isset($parents_index[$term->tid]) && (is_null($max_depth) || $depth < $max_depth)) {
+            $term->children = taxonomy_get_nested_tree($parents_index[$term->tid], $max_depth, $term->tid, $parents_index, $depth + 1);
+        }
+    }
+    return $return;
+}
+
+function theme_taxonomy_nested_tree($tree) {
+    if (count($tree)) {
+        $output = '<ul class="taxonomy-tree">';
+        foreach ($tree as $term) {
+            $output .= '<li class="taxonomy-term">';
+            $output .= l($term->name, taxonomy_term_path($term));
+            if ($term->children) {
+                $output .= theme('illogica_category_tree', $term->children);
+            }
+            $output .= '</li>';
+        }
+        $output .= '</ul>';
+    }
+    return $output;
+}
