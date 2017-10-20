@@ -1180,7 +1180,7 @@ footer {
     list-style: none;
     margin-bottom: 20px; }
     .term_tree .item-list ul li .list-tree-element {
-      padding: 3px  5px; }
+      padding: 3px 5px; }
       .term_tree .item-list ul li .list-tree-element.active {
         background: #71c6ad;
         position: relative; }
@@ -1224,6 +1224,64 @@ footer {
   display: none; }
 .tab2 .left-side {
   padding-left: 40px;
-  padding-right: 80px; }
+  padding-right: 80px;
+  min-width: 220px; }
+.tab2 .right-side {
+  flex-grow: 2; }
+  .tab2 .right-side .view-content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap; }
+    .tab2 .right-side .view-content .views-row {
+      width: 23.5%;
+      margin-right: 20px;
+      -webkit-box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
+      box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
+      margin-bottom: 40px;
+      padding-bottom: 15px;
+      position: relative; }
+      .tab2 .right-side .view-content .views-row .views-field-field-price {
+        text-align: center;
+        font-size: 24px;
+        font-family: "OpenSans SemiBold";
+        margin-bottom: 20px; }
+      .tab2 .right-side .view-content .views-row .views-field-title a {
+        margin-bottom: 0;
+        font-size: 20px;
+        font-family: "OpenSans SemiBold"; }
+      .tab2 .right-side .view-content .views-row .views-field-field-exist {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px; }
+      .tab2 .right-side .view-content .views-row:nth-child(4n) {
+        margin-right: 0; }
+      .tab2 .right-side .view-content .views-row .views-field-field-good-image img {
+        width: 100%; }
+    .tab2 .right-side .view-content .views-field-title a,
+    .tab2 .right-side .view-content .views-field-field-exist {
+      padding-left: 10px; }
+    .tab2 .right-side .view-content .views-field-field-surprise {
+      text-align: center;
+      position: relative;
+      font-family: "OpenSans Regular";
+      font-weight: 600; }
+      .tab2 .right-side .view-content .views-field-field-surprise:before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: -6px;
+        background: url("../images/gift.png") no-repeat;
+        background-size: 80%;
+        width: 43px;
+        height: 40px; }
+    .tab2 .right-side .view-content .views-field-field-novelty:not(:empty) {
+      position: absolute;
+      padding: 3px 10px;
+      background: #46ae4e;
+      top: 0;
+      left: 0;
+      color: white;
+      text-transform: uppercase; }
 
 /*# sourceMappingURL=main-style.css.map */
