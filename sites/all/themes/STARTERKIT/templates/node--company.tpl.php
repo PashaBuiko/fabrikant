@@ -180,6 +180,21 @@
         </div>
 
     </div>
+    <div class="tab tab3">
+        <div class="company_news_wrapper">
+            <?php
+            print views_embed_view('company_goods', 'page_1',arg(1));
+            ?>
+        </div>
+    </div>
+    <div class="tab tab4">
+        <div class="company_photogallery_wrapper">
+            <?php
+            print views_embed_view('company_goods', 'page_2',arg(1));
+            ?>
+        </div>
+    </div>
+
 
 
 

@@ -1657,6 +1657,18 @@ footer {
         margin-bottom: 40px;
         padding-bottom: 15px;
         position: relative;
+        &.views-row-1:before{
+          content:'Последний';
+          position: absolute;
+          padding: 3px 10px;
+          background: #e38d6e;
+          top: 27px;
+          width: 89px;
+          text-align: center;
+          left: 0;
+          color: white;
+          text-transform: uppercase;
+        }
         .views-field-field-price {
           text-align: center;
           font-size: 24px;
@@ -1709,9 +1721,93 @@ footer {
         color: white;
         text-transform: uppercase;
       }
-
+      .views-field-field-novelty:not(:empty){
+        position: absolute;
+        padding: 3px 10px;
+        background: #46ae4e;
+        top: 0;
+        left: 0;
+        color: white;
+        width: 89px;
+        text-align: center;
+        text-transform: uppercase;
+      }
     }
   }
 }
 
 
+.view-company-goods.view-display-id-page_1{
+  .views-field-field-image-{
+    display: inline-block;
+    vertical-align: top;
+    img{
+      max-width: 300px;
+      height: auto;
+    }
+  }
+  .views-field-title {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 70%;
+    padding-left: 20px;
+  }
+  .company_news_content{
+    a{
+      margin: 0;
+      font-size: 18px;
+      font-family: 'OpenSans Bold';
+      line-height: 24px;
+      text-decoration: none;
+      margin-bottom: 15px;
+    }
+  }
+  .views-row{
+    margin-bottom:20px;
+  }
+  .vud-widget-alternate .up-active{
+    background: url(../images/heart.png) no-repeat;
+    -webkit-background-size: 21px 17px;
+    background-size: 21px 17px;
+    display: inline-block;
+    position: relative;
+    top: 9px;
+  }
+  .vud-widget-alternate .alternate-votes-display{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .vud-widget-alternate{
+    width:auto;
+    position: relative;
+  }
+  .vud-widget-alternate .alternate-votes-display{
+    border:none;
+  }
+   .vud-widget-alternate .up-inactive{
+     background: url(../images/heart_inactive.png) no-repeat;
+     -webkit-background-size: 21px 17px;
+     background-size: 21px 17px;
+     display: inline-block;
+     vertical-align: top;
+     position: relative;
+     top: 9px;
+   }
+  .alternate-votes-display + a{
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    margin: 0;
+    vertical-align: top;
+  }
+  .vud-link-reset{
+    color: transparent;
+    position: absolute;
+    top: 4px;
+    width: 21px;
+    height: 24px;
+    /* left: 10px; */
+    right: 29px;
+    margin: 0;
+  }
+}

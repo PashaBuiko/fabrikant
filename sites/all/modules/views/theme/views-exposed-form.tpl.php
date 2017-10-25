@@ -41,6 +41,7 @@
           </div>
         <?php endif; ?>
         <div class="views-widget">
+
           <?php print $widget->widget; ?>
         </div>
         <?php if (!empty($widget->description)): ?>

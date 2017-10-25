@@ -110,8 +110,16 @@ function company_admin_node_presave($node){
 
         $node->field_alias['und'][0]['value'] = $alias[1];
     }
-    if ($node->type == 'company' ){
-      // $node->field_alliance['und'][0]['value'] = transliteration_get($node->title);
+
+    if ($node->type == 'company_news' ){
+        $company = company_admin_get_company();
+        $node->field_company['und'][0]['target_id'] = $company->nid;
+    }
+    if ($node->type == 'photogallery' ){
+        $company = company_admin_get_company();
+        $node->field_company['und'][0]['target_id'] = $company->nid;
+
+        reset_albom_foto($node);
     }
 
 
@@ -124,6 +132,8 @@ function company_admin_node_postsave($node, $op) {
 
 
 }
+
+
 
 
 

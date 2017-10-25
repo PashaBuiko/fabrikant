@@ -47,7 +47,7 @@
                 $('.node-company .tab').removeClass('active');
 
                 switch (id){
-                    case 'menu-577' :  $('.node-company  .tab1').addClass('active');     break;
+                    case 'menu-577' :   $('.node-company .tab1').addClass('active');     break;
                     case 'menu-565' :   $('.node-company .tab2').addClass('active');     break;
                     case 'menu-566' :   $('.node-company .tab3').addClass('active');     break;
                     case 'menu-567' :   $('.node-company .tab4').addClass('active');     break;
@@ -81,7 +81,7 @@
                 $('.tab2 .term_tree li .list-tree-element').removeClass('active');
                 $(this).addClass('active');
             })
-
+            $('.view-company-goods.view-display-id-page_1 .views-field-title .field-content > a').remove();
 
 
 
