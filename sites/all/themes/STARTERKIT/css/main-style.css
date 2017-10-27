@@ -1103,7 +1103,8 @@ footer {
     margin-right: 15px; }
     .compnay_slider .slick-initialized .slick-slide img {
       width: 100%;
-      height: auto; }
+      height: auto;
+      height: 102px; }
   .compnay_slider .slick-prev {
     background: #0fa57e;
     -webkit-border-radius: 50%;
@@ -1145,6 +1146,9 @@ footer {
 
 .tab .left-side {
   max-width: 60%; }
+
+.tab .right-side {
+  max-width: 30%; }
 
 .tab1 {
   display: flex;
@@ -1305,11 +1309,13 @@ footer {
       text-align: center;
       text-transform: uppercase; }
 
-.view-company-goods.view-display-id-page_1 .views-field-field-image- {
+.view-company-goods.view-display-id-page_1 .views-field-field-image-,
+.view-company-goods.view-display-id-page_1 .views-field-field-image {
   display: inline-block;
   vertical-align: top; }
-  .view-company-goods.view-display-id-page_1 .views-field-field-image- img {
-    max-width: 300px;
+  .view-company-goods.view-display-id-page_1 .views-field-field-image- img,
+  .view-company-goods.view-display-id-page_1 .views-field-field-image img {
+    width: 300px;
     height: auto; }
 .view-company-goods.view-display-id-page_1 .views-field-title {
   display: inline-block;
@@ -1363,5 +1369,231 @@ footer {
   /* left: 10px; */
   right: 29px;
   margin: 0; }
+
+.news-page {
+  font-size: 0;
+  position: relative;
+  padding-bottom: 65px;
+  background: url(../images/shadow-line.png) no-repeat;
+  background-position: center bottom;
+  -webkit-background-size: 100%;
+  background-size: 100%; }
+  .news-page .left {
+    width: 60%;
+    display: inline-block;
+    vertical-align: top; }
+    .news-page .left #block-views-economic-news-block-2 .block-title {
+      color: #000000;
+      margin: 70px 0px;
+      font-size: 26px;
+      font-family: "OpenSans SemiBold";
+      text-transform: uppercase; }
+    .news-page .left img {
+      width: 100%;
+      height: auto;
+      max-height: 300px; }
+    .news-page .left #block-views-economic-news-block-2 .views-row-2,
+    .news-page .left #block-views-economic-news-block-2 .views-row-3 {
+      display: inline-block;
+      width: 46%;
+      vertical-align: top; }
+    .news-page .left #block-views-economic-news-block-2 .views-row-2 {
+      margin-right: 32px; }
+    .news-page .left #block-views-economic-news-block-2 .views-row-3 {
+      margin-left: 32px; }
+  .news-page .right {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 125px; }
+    .news-page .right #block-views-economic-news-block-3 {
+      padding-left: 100px; }
+      .news-page .right #block-views-economic-news-block-3 img {
+        width: 100%;
+        max-width: 460px; }
+
+#block-views-economic-news-block-5 {
+  /*.view-content{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .views-row{
+      width:46%;
+      margin:0;
+    }
+
+  }*/ }
+  #block-views-economic-news-block-5 .item-list .pager {
+    text-align: left; }
+  #block-views-economic-news-block-5 .views-field-field-image {
+    max-width: 30%;
+    float: left;
+    padding-right: 20px; }
+  #block-views-economic-news-block-5 .views-field-field-description {
+    font-size: 16px; }
+  #block-views-economic-news-block-5 .views-field-changed {
+    font-size: 16px; }
+  #block-views-economic-news-block-5 .views-row {
+    margin-bottom: 30px; }
+
+#block-views-economic-news-block-4 {
+  background: #ecf0f0;
+  margin-left: 100px;
+  padding: 30px 30px 30px 30px;
+  margin-top: 50px; }
+  #block-views-economic-news-block-4 .block-title {
+    font-size: 20px;
+    margin-bottom: 20px; }
+  #block-views-economic-news-block-4 .views-field-field-image {
+    max-width: 150px;
+    display: inline-block; }
+    #block-views-economic-news-block-4 .views-field-field-image img {
+      width: 100%;
+      height: auto; }
+  #block-views-economic-news-block-4 .views-field-title {
+    vertical-align: top;
+    display: inline-block;
+    width: 200px;
+    padding-left: 20px; }
+    #block-views-economic-news-block-4 .views-field-title a {
+      font-weight: 300;
+      font-family: "OpenSans Regular";
+      font-size: 15px;
+      margin-top: 0; }
+  #block-views-economic-news-block-4 .views-row {
+    margin-bottom: 20px; }
+
+#block-views-economic-news-block-6 {
+  margin-top: 50px; }
+  #block-views-economic-news-block-6 .views-field-field-image {
+    padding-left: 100px; }
+    #block-views-economic-news-block-6 .views-field-field-image img {
+      width: 100%;
+      height: auto; }
+
+#block-views-economic-news-block-7 {
+  margin-top: 50px; }
+  #block-views-economic-news-block-7 .view-content {
+    display: flex;
+    justify-content: space-between; }
+    #block-views-economic-news-block-7 .view-content .views-row {
+      width: 30%;
+      position: relative; }
+      #block-views-economic-news-block-7 .view-content .views-row img {
+        width: 100%; }
+      #block-views-economic-news-block-7 .view-content .views-row .views-field-field-tags {
+        position: absolute;
+        right: 0;
+        top: 200px; }
+        #block-views-economic-news-block-7 .view-content .views-row .views-field-field-tags a {
+          background: #a7aaab;
+          color: black;
+          text-decoration: none;
+          display: block;
+          padding-left: 10px;
+          padding-right: 10px;
+          line-height: 22px;
+          font-size: 18px; }
+
+.company_news_wrapper {
+  width: 100%; }
+
+#edit-field-category-gallery-tid .form-item-field-category-gallery-tid:first-child {
+  display: none; }
+
+#edit-field-category-gallery-tid .form-item-field-category-gallery-tid img {
+  display: block;
+  width: 200px; }
+
+#edit-field-category-gallery-tid .form-item-field-category-gallery-tid label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  display: block;
+  width: 90%; }
+
+#edit-field-category-gallery-tid .form-item-field-category-gallery-tid:not(:last-child) label {
+  margin-right: 15px; }
+
+#edit-field-category-gallery-tid {
+  display: flex;
+  justify-content: space-between; }
+  #edit-field-category-gallery-tid input.form-radio {
+    display: none; }
+
+.company_photogallery_wrapper {
+  max-width: 65%; }
+  .company_photogallery_wrapper .views-exposed-form .views-exposed-widget {
+    float: none;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 50px; }
+  .company_photogallery_wrapper .view-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .company_photogallery_wrapper .view-content .views-row {
+      width: 30%;
+      margin-bottom: 30px; }
+      .company_photogallery_wrapper .view-content .views-row img {
+        width: 100%;
+        height: auto; }
+
+.tab4 .right-side {
+  padding-left: 100px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 35%;
+  display: inline-block;
+  margin-top: 128px; }
+  .tab4 .right-side .grey-block {
+    margin-top: 0; }
+  .tab4 .right-side img {
+    width: 100%; }
+.tab4 .block-title {
+  font-family: 'OpenSans Regular';
+  color: #000000;
+  font-size: 40px;
+  /* Приближение из-за подстановки шрифтов */
+  font-weight: 600;
+  line-height: 40px;
+  /* Приближение из-за подстановки шрифтов */
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 40px; }
+
+.news-block {
+  margin-top: 55px;
+  margin-bottom: 55px;
+  padding: 15px;
+  padding-left: 30px;
+  background: #ecf0f0; }
+  .news-block .title {
+    margin: 20px;
+    text-transform: initial;
+    font-family: 'OpenSans Semibold';
+    font-size: 24px; }
+  .news-block .views-field-field-image,
+  .news-block .views-field-field-image- {
+    max-width: 100px;
+    display: inline-block;
+    vertical-align: top; }
+    .news-block .views-field-field-image img,
+    .news-block .views-field-field-image- img {
+      width: 100%;
+      height: auto; }
+  .news-block .views-field-title {
+    margin-left: 15px;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 60%; }
+    .news-block .views-field-title a {
+      margin: 0; }
+  .news-block .views-row {
+    margin-bottom: 15px; }
+
+.baner img {
+  width: 100%; }
 
 /*# sourceMappingURL=main-style.css.map */

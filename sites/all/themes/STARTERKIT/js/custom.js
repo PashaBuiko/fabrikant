@@ -83,6 +83,16 @@
             })
             $('.view-company-goods.view-display-id-page_1 .views-field-title .field-content > a').remove();
 
+            term_21 = $('.tid-21').attr('src');
+            term_22 = $('.tid-22').attr('src');
+            term_23 = $('.tid-23').attr('src');
+            term_24 = $('.tid-24').attr('src');
+
+            $('#edit-field-category-gallery-tid-wrapper .form-radios .form-item-field-category-gallery-tid').eq(1).once().find('label').prepend('<img src='+term_21+'>');
+            $('#edit-field-category-gallery-tid-wrapper .form-radios .form-item-field-category-gallery-tid').eq(2).once().find('label').prepend('<img src='+term_22+'>');
+            $('#edit-field-category-gallery-tid-wrapper .form-radios .form-item-field-category-gallery-tid').eq(3).once().find('label').prepend('<img src='+term_23+'>');
+            $('#edit-field-category-gallery-tid-wrapper .form-radios .form-item-field-category-gallery-tid').eq(4).once().find('label').prepend('<img src='+term_24+'>');
+
 
 
         }

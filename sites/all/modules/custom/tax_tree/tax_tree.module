@@ -2,7 +2,6 @@
 function tax_tree_taxonomy_tree($vocabulary_name) {
     $vid = taxonomy_vocabulary_machine_name_load($vocabulary_name)->vid;
     $terms = taxonomy_get_tree($vid);
-    dpm( _tax_tree_taxonomy_tree($terms));
     return theme('item_list', array('items' => _tax_tree_taxonomy_tree($terms)));
 }
 

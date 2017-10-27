@@ -90,6 +90,7 @@
     <?php  print render($content['field_fivestar']); ?>
 
 
+
     <?php if (isset($node->field_logo['und'])) { $image = file_create_url($node->field_logo['und'][0]['uri']);
 
     ?>
@@ -144,6 +145,12 @@
 
                 ?>
             </div>
+            <div class="news-block">
+                <h2 class="title"> Новости компаний</h2>
+                <?php
+                print views_embed_view('company_goods', 'page_4',arg(1));
+                ?>
+            </div>
             <?php   ///// left side
 
 
@@ -189,40 +196,59 @@
     </div>
     <div class="tab tab4">
         <div class="company_photogallery_wrapper">
+
+            <div class="custom_filter" style="display: none;">
+              <?php
+                 $object_terms= taxonomy_term_load_multiple(array(21,22,23,24));
+
+                 foreach ($object_terms as $term ){
+                     $file = file_create_url($term->field_image['und'][0]['uri']);
+                     ?>
+                     <img src="<?=$file;?>" alt="" class="<?= 'tid-'.$term->tid;?>">
+                <?
+                 }
+              ?>
+            </div>
+            <h2 class="block-title"> Фотогалерея </h2>
             <?php
             print views_embed_view('company_goods', 'page_2',arg(1));
             ?>
         </div>
+        <div class="right-side">
+            <div class="grey-block">
+                <?php
+
+                print render($content['field_fabriks_type']);
+                print render($content['field_unp']);
+
+
+                ?>
+            </div>
+            <div class="news-block">
+                <h2 class="title"> Новости компаний</h2>
+                <?php
+                print views_embed_view('company_goods', 'page_4',arg(1));
+                ?>
+            </div>
+
+
+            <?php   ///// left side
+
+
+
+
+            //    here must popoular news \\
+            print render($content['field_baner']);
+
+            ?>
+        </div>
     </div>
-
-
-
 
     <div class="tab tab5">
-
         <?php print render($content['comments']); ?>
-
     </div>
 
 
 
-
-    <?php print $user_picture; ?>
-
-    <?php print render($title_prefix); ?>
-    <?php if (!$page && $title): ?>
-        <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
-
-    <?php if ($unpublished): ?>
-        <div class="unpublished"><?php print t('Unpublished'); ?></div>
-    <?php endif; ?>
-
-    <?php if ($display_submitted): ?>
-        <div class="submitted">
-            <?php print $submitted; ?>
-        </div>
-    <?php endif; ?>
 
 </div><!-- /.node -->
