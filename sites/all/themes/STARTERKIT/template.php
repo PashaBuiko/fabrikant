@@ -309,7 +309,7 @@ function company_custom_menu(){
 
     foreach($menu_array as $key=> $item){
         switch ($index){
-            case '0' : $menu_array[$key]['href'] = $company_base_path.'/about'; $menu_array[$key]['attributes']['class'] = 'active';  break;
+            case '0' : $menu_array[$key]['href'] = $company_base_path;   break;
             case '1' : $menu_array[$key]['href'] = $company_base_path.'/products'; break;
             case '2' : $menu_array[$key]['href'] = $company_base_path.'/news'; break;
             case '3' : $menu_array[$key]['href'] = $company_base_path.'/gallery'; break;
@@ -358,4 +358,31 @@ function theme_taxonomy_nested_tree($tree) {
         $output .= '</ul>';
     }
     return $output;
+}
+
+
+function STARTERKIT_pager_last($variables) {
+    $text = $variables['text'];
+    $element = $variables['element'];
+    $parameters = $variables['parameters'];
+
+    global $pager_page_array, $pager_total;
+    $output = '';
+    if ($text == 'последняя »'){
+        $text ="...";
+    }
+    // If we are anywhere but the last page
+    if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
+        $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
+    }
+
+    return $output;
+}
+
+function STARTERKIT_form_comment_form_alter(&$form, &$form_state) {
+    // Wrap the intro in a div for themeing.
+    $form['author']['_author']['#title'] = t('Отображаемое имя');
+    $form['actions']['submit']['#value'] = t('Отправить');
+    $form['actions']['preview'] = NULL;
+
 }

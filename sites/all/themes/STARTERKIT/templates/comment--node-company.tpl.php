@@ -61,43 +61,27 @@
  * @see theme_comment()
  */
 ?>
-<div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print $picture; ?>
+<div class="<?php print $classes; ?> clearfix custom_comment"<?php print $attributes; ?>>
+<div class="left">
+    <p class="author"><?=$author?></p>
+    <div class="avatar">
 
-  <?php print render($title_prefix); ?>
-  <?php if ($title): ?>
-    <h3<?php print $title_attributes; ?>>
-      <?php print $title; ?>
-      <?php if ($new): ?>
-        <span class="new"><?php print $new; ?></span>
-      <?php endif; ?>
-    </h3>
-  <?php elseif ($new): ?>
-    <div class="new"><?php print $new; ?></div>
-  <?php endif; ?>
-  <?php print render($title_suffix); ?>
-
-  <?php if ($status == 'comment-unpublished'): ?>
-    <div class="unpublished"><?php print t('Unpublished'); ?></div>
-  <?php endif; ?>
-
-  <div class="submitted">
-    <?php print $permalink; ?>
-    <?php print $submitted; ?>
-  </div>
-
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-      // We hide the comments and links now so that we can render them later.
-      hide($content['links']);
-      print render($content);
-    ?>
-    <?php if ($signature): ?>
-      <div class="user-signature clearfix">
-        <?php print $signature; ?>
-      </div>
-    <?php endif; ?>
-  </div>
-
-  <?php print render($content['links']) ?>
+        <?php
+        $file = file_load($user->picture);
+        if ($file){
+        print $picture;
+    } else{
+        print '<img src ="/sites/all/themes/STARTERKIT/images/avatar.png">';
+    } ?></div>
+</div>
+    <div class="right">
+       <div class="comment_date"><?php
+            $date =  format_date($comment->created, 'custom', 'd/m/Y H:i');
+            $date_full= explode('/', $date);
+            $new_format =  switch_month($date_full[1]);
+            print $date_full[0].' '.$new_format.' '.$date_full[2].' '.$date_full[3];
+        ?></div>
+        <?php     print render($content);?>
+        <?php // print render($content['links']) ?>
+    </div>
 </div><!-- /.comment -->

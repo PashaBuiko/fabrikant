@@ -3,10 +3,6 @@
         attach: function(context, settings) {
 
 
-
-
-
-
             /*Add your js code here*/
             $('.view-view-industry #edit-field-list-category-value label ').click(function(){
                   $(this).parent().children().eq(0).click();
@@ -27,19 +23,24 @@
             })
 
 
-
-            if (! $('.average_display').length ) {
-                $( "<span class='average_display'></span>" ).insertBefore( $( ".fivestar-widget-5" ) );
+            if (! $('.main_rating .average_display').length ) {
+                $( "<span class='average_display'></span>" ).insertBefore( $( ".main_rating .fivestar-widget-5" ) );
             }
-            $(".average_display").text($('.average_value').text()+"/ " );
+            $(".main_rating .average_display").text($('.main_rating .average_value').text()+"/ " );
+
+
+          /*  if (! $('.rating_comment .average_display').length ) {
+                $( "<span class='average_display'></span>" ).insertBefore( $( ".rating_comment .fivestar-widget-5" ) );
+            }
+            $(".rating_comment .average_display").text($('.rating_comment .average_value').text()+"/ " );
 
 
              $('.company-navigation a.active').parent().addClass('active').children().removeClass('active');
-
+*/
 
              ///// tabs in company node
 
-            $('.company-navigation  li a').click(function (e) {
+            /*$('.company-navigation  li a').click(function (e) {
                 e.preventDefault();
                 $('.company-navigation ul  li').removeClass('active');
                 $(this).parent().addClass('active');
@@ -54,7 +55,7 @@
                     case 'menu-569' :   $('.node-company .tab5').addClass('active');     break;
                 }
             });
-
+*/
 
             $('.tab2 .term_tree span').once().bind('click', function(){
                     $(this).parent().toggleClass('open');
@@ -67,13 +68,21 @@
                         $(this).text('+');
                     }
             });
+            if ( ! $('.login').length ) {
+                $(' <a href="/" class="login">Войти </a>').once().insertAfter($('#edit-author--2 a'));
+            }
+
+
+
+
+
+
             $('.tab2 .term_tree a').once().bind('click', function(e){
                 e.preventDefault();
                 var id_term = $(this).attr('id');
-                console.log(id_term);
-
-                $("#edit-field-goods-category-tid [value='"+id_term+"']").attr("selected", "selected");
+                $("#edit-term-node-tid-depth [value='"+id_term+"']").attr("selected", "selected");
                 $('#edit-submit-company-goods').click();
+                $('.entry-text').removeClass()
 
             });
 

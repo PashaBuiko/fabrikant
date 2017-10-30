@@ -38,17 +38,31 @@
 $comments = render($content['comments']);
 $comment_form = render($content['comment_form']);
 ?>
-<div id="comments"   class=" <?php print $classes; ?>"<?php print $attributes; ?>>
+<div id="comments"   class=" <?php print $classes; ?> "<?php print $attributes; ?>>
     <?php if ($comments && $node->type != 'forum'): ?>
-        <?php print render($title_prefix); ?>
-        <h2 class="title"><?php print t('Comments'); ?></h2>
-        <?php print render($title_suffix); ?>
+
     <?php endif; ?>
 
     <?php print $comments; ?>
 
     <?php if ($comment_form): ?>
-        <h2 class="title comment-form"><?php print t('Add new comment'); ?></h2>
-        <?php print $comment_form; ?>
+        <h2 class="title comment-form"> Оставить отзыв</h2>
+    <?php
+
+    $file = file_load($user->picture);
+    $file_url = file_create_url($file->uri);
+    if ($file){
+        print '<div class="comment_avatar"><img src="'.$file_url.'" /></div>';
+    } else{
+        print '<img src ="/sites/all/themes/STARTERKIT/images/avatar.png">';
+    } ?></div>
+
+<div class="rating_comment">
+    <span> Оцените компанию</span>
+    <?php
+
+print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?></div>
+
+<?php print $comment_form; ?>
     <?php endif; ?>
 </div>

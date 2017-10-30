@@ -880,8 +880,16 @@ footer {
     /* Приближение из-за подстановки шрифтов */
     text-align: left;
     max-width: 424px; }
+  .node-company .slogan_block .slogan_text p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 15px;
+    line-height: 22px;
+    text-align: justify;
+    max-width: 85%; }
 .node-company .pb__contacts_block {
-  font-size: 0; }
+  font-size: 0;
+  min-width: 200px; }
   .node-company .pb__contacts_block .left {
     /* display: inline-block;
      width:50%;*/
@@ -1320,7 +1328,7 @@ footer {
 .view-company-goods.view-display-id-page_1 .views-field-title {
   display: inline-block;
   vertical-align: top;
-  max-width: 70%;
+  max-width: 100%;
   padding-left: 20px; }
 .view-company-goods.view-display-id-page_1 .company_news_content a {
   margin: 0;
@@ -1330,7 +1338,9 @@ footer {
   text-decoration: none;
   margin-bottom: 15px; }
 .view-company-goods.view-display-id-page_1 .views-row {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between; }
 .view-company-goods.view-display-id-page_1 .vud-widget-alternate .up-active {
   background: url(../images/heart.png) no-repeat;
   -webkit-background-size: 21px 17px;
@@ -1595,5 +1605,133 @@ footer {
 
 .baner img {
   width: 100%; }
+
+#views-exposed-form-company-goods-page {
+  display: none; }
+
+.goods-list {
+  display: flex;
+  justify-content: space-between; }
+
+.entry-text.active {
+  max-width: 100%;
+  font-size: 20px;
+  font-family: "OpenSans Regular";
+  display: block; }
+
+.entry-text {
+  display: none; }
+
+.news-list .title {
+  font-family: 'OpenSans Regular';
+  color: #000000;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: left;
+  margin-top: 50px;
+  margin-bottom: 50px; }
+
+.gallery-list {
+  display: flex;
+  justify-content: space-between; }
+
+.item-list .pager li {
+  display: inline-block;
+  vertical-align: top; }
+
+.custom_comment {
+  background: #f1f1f1;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 780px; }
+  .custom_comment.odd:nth-child(2n) {
+    background: #fffafa; }
+  .custom_comment.even:nth-child(2n-1) {
+    background: #f1f1f1; }
+  .custom_comment .author {
+    margin: 0;
+    margin-bottom: 10px; }
+    .custom_comment .author a {
+      color: #2368ae;
+      text-decoration: none;
+      cursor: pointer; }
+  .custom_comment .avatar img {
+    width: 70px; }
+  .custom_comment .right {
+    padding-left: 20px;
+    width: 100%; }
+    .custom_comment .right .field-name-comment-body p {
+      margin-top: 0;
+      font-family: "OpenSans Regular";
+      font-size: 14px; }
+    .custom_comment .right .comment_date {
+      margin-bottom: 5px;
+      color: #6a6868;
+      font-family: "OpenSans Regular";
+      font-size: 12px; }
+  .custom_comment .links.inline {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0; }
+  .custom_comment .links a {
+    color: #0fa57e;
+    text-decoration: none;
+    cursor: pointer; }
+    .custom_comment .links a:hover {
+      color: #1C60A5; }
+  .custom_comment .links li:not(.last) {
+    display: none; }
+
+.reviews-list {
+  display: flex;
+  justify-content: space-between; }
+  .reviews-list .company_reviews_wrapper {
+    max-width: 65%; }
+
+.indented {
+  margin-left: 85px; }
+
+.page-company .item-list .pager {
+  text-align: right;
+  margin-top: 40px; }
+.page-company .form-item-comment-body-und-0-value label {
+  display: none; }
+.page-company .resizable-textarea .grippie {
+  display: none; }
+.page-company #edit-author--2 {
+  position: relative;
+  top: -275px; }
+  .page-company #edit-author--2 a {
+    position: relative;
+    left: 180px;
+    top: 10px;
+    width: 400px;
+    font-size: 22px;
+    line-height: 44px;
+    background: #f1f1f1;
+    height: 44px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding-top: 0px;
+    padding-left: 40px;
+    box-sizing: border-box; }
+    .page-company #edit-author--2 a.login {
+      top: -29px;
+      left: 600px;
+      width: 200px;
+      color: white;
+      background: #0fa57e; }
+.page-company .title.comment-form {
+  color: #0fa57e;
+  font-family: "OpenSans Regular";
+  font-size: 24px;
+  margin-top: 50px;
+  margin-bottom: 90px; }
+
+.comment_avatar img {
+  width: 140px; }
 
 /*# sourceMappingURL=main-style.css.map */
