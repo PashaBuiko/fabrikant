@@ -136,14 +136,12 @@
             $viewComs = comment_node_page_additions($node);
             print drupal_render($viewComs);
             ?>
-        </div>
+
         <div class="right-side">
             <div class="grey-block">
 
                 <div > <?php   print render($node->field_fabriks_type['und'][0]['value']);  ?></div>
                 <div > <?php print render($node->field_unp['und'][0]['value']); ?></div>
-
-
 
             </div>
             <div class="news-block">
@@ -153,11 +151,7 @@
                 ?>
             </div>
 
-
             <?php   ///// left side
-
-
-
 
             //    here must popoular news \\
             $file = file_create_url($node->field_baner['und'][0]['uri']);

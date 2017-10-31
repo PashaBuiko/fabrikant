@@ -1701,12 +1701,14 @@ footer {
 .page-company .resizable-textarea .grippie {
   display: none; }
 .page-company #edit-author--2 {
-  position: relative;
-  top: -275px; }
+  position: absolute;
+  top: -245px; }
+  .page-company #edit-author--2 label {
+    font-size: 16px; }
   .page-company #edit-author--2 a {
-    position: relative;
+    position: absolute;
     left: 180px;
-    top: 10px;
+    top: 35px;
     width: 400px;
     font-size: 22px;
     line-height: 44px;
@@ -1719,7 +1721,7 @@ footer {
     padding-left: 40px;
     box-sizing: border-box; }
     .page-company #edit-author--2 a.login {
-      top: -29px;
+      top: 35px;
       left: 600px;
       width: 200px;
       color: white;
@@ -1733,5 +1735,42 @@ footer {
 
 .comment_avatar img {
   width: 140px; }
+
+.comment-form {
+  position: relative; }
+
+.rating_comment span {
+  font-size: 16px;
+  font-family: "OpenSans Regular";
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 600;
+  position: relative;
+  top: 10px;
+  margin-right: 10px; }
+.rating_comment .view-id-company_goods {
+  display: inline-block;
+  vertical-align: top; }
+.rating_comment .fivestar-widget {
+  margin-bottom: 0px; }
+
+#edit-comment-body-und-0-value {
+  height: 300px;
+  background: #f1f1f1;
+  resize: none;
+  padding: 10px; }
+
+#ajax-comments-reply-form-161-0-0 .form-submit {
+  width: 200px;
+  color: white;
+  background: #0fa57e;
+  border: none;
+  height: 40px;
+  font-size: 18px; }
+#ajax-comments-reply-form-161-0-0 #edit-actions {
+  text-align: right; }
+
+.messages.warning {
+  display: none; }
 
 /*# sourceMappingURL=main-style.css.map */

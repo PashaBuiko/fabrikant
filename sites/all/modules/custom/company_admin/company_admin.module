@@ -81,8 +81,8 @@ function company_page($node_title, $type){
     $template_name ="";
     switch ($type){
         case 'main-page': $template_name ="main"; break;
-        case 'products-page': $template_name ="news"; break;
-        case 'news-page': $template_name ="products"; break;
+        case 'products-page': $template_name ="products"; break;
+        case 'news-page': $template_name ="news"; break;
         case 'gallery-page': $template_name ="gallery"; break;
         case 'review-page': $template_name ="review"; break;
     }
