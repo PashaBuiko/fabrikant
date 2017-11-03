@@ -168,13 +168,39 @@
         <div id="main-wrapper">
             <div class="goods-list tab2 ">
                 <div class="left-side">
-                    <div class="term_tree">
+                    <div class="term_tree category_company">
                         <?php echo tax_tree_taxonomy_tree('company_category'); ?>
                     </div>
                 </div>
                 <div class="right-side">
-                    <?php echo tax_tree_taxonomy_tree('company_tags'); ?>
+                    <div class="add_company"><a href="/">Добавить предприятие</a></div>
+                    <div class="company_tags">
+                        <?php echo tax_tree_taxonomy_tree('company_tags'); ?>
+                    </div>
+                    <div class="news-block category_company">
+                        <h2 class="title"> Новости компаний</h2>
+                        <?php
+                        print views_embed_view('company_news', 'block_3');
+                        ?>
+                    </div>
                 </div>
+            </div>
+            <div class="new-enterprise type-2">
+
+                <h2 class="title">НОВЫЕ КОМПАНИИ</h2>
+                <div class="new-enterprise-wrapp">
+                <div class="left-block">
+                    <?php print  views_embed_view('new_enterprice', 'block_1') ?>
+                </div>
+                <div class="right-block">
+                    <?php  $node = node_load(259);
+                    $file = file_create_url($node->field_image['und'][0]['uri']); 
+                    
+                    ?>
+                    <img src="<?=$file; ?>" alt="">
+                </div>
+                </div>
+
             </div>
         </div>
         <!-- /#main, /#main-wrapper -->

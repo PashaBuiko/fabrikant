@@ -104,7 +104,7 @@
             <?php print render($node->field_slogan['und'][0]['value']);
 
             ?>
-            <div class="slogan_text"><?php print render($node->field_under_slogan_text['und'][0]['value']);            ?></div>
+            <div class="slogan_text"><?php print render($node->field_under_slogan_text['und'][0]['value']); ?></div>
         </div>
 
 
@@ -147,7 +147,7 @@
         </div>
         <div class="right-side">
             <div class="entry-text active">
-                <?php print render($node->field_description['und'][0]['value']);   ?>
+                <?php print render($node->field_description['und'][0]['value']); ?>
             </div>
             <?php
             print views_embed_view('company_goods', 'page', $node->nid);
@@ -155,7 +155,6 @@
         </div>
 
     </div>
-
 
 
 </div><!-- /.node -->
