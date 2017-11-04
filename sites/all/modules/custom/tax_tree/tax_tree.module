@@ -7,7 +7,7 @@ function tax_tree_taxonomy_tree($vocabulary_name, $type = 0) {
     $tag  = false;
     switch ($vocabulary_name){
            case 'company_tags' : $term = true; $tag_company = true; break;
-          case 'goods_tags' : $tag_good = true; break;
+           case 'goods_tags' : $tag_good = true; break;
     }
    if ( $tag_company ){
        $node = node_load(258);

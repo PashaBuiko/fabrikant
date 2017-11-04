@@ -193,6 +193,68 @@ function get_node_by_alias($node_title) {
 }
 
 
+function get_company_categories($term_id = null){
 
 
+    $terms = db_query("
+  SELECT td.tid, td.name, (
+    SELECT COUNT(*) FROM {taxonomy_index} ti
+    LEFT JOIN {node} n ON ti.nid = n.nid
+    WHERE ti.tid = td.tid AND n.status = 1
+  ) node_count FROM {taxonomy_term_data} td , {taxonomy_term_hierarchy } th
+  WHERE vid = :vid AND td.tid = th.tid AND th.parent = 0
+  ORDER BY weight
+", array(':vid' => 4));
 
+    $query = db_select('node', 'n')
+        ->condition('n.type', 'company')
+        ->condition('n.status', 1);
+    $query->addExpression('COUNT(*)');
+    $node_count = $query->execute()->fetchField();
+
+    $items = array();
+    if (!$term_id){
+        $active = "active";
+    }
+    else{
+        $active = "";
+    }
+    $items[] = '<div class="'.$active.'">'.l('Все'." (".$node_count.")", 'category/company/' ).'</div>';;
+    foreach ($terms as $term) {
+        ($term->tid == $term_id)? $active="active" : $active='';
+        $items[] = '<div class="'.$active.'">'.l($term->name ." "."(".$term->node_count.")", 'category/company/'.$term->tid ).'</div>';
+    }
+
+   return theme('item_list', array('items' => $items));
+}
+
+function company_admin_views_query_alter(&$view, &$query) {
+
+
+    $term_path=drupal_get_normal_path('category/company/'.arg(2));
+    $tid = basename($term_path);
+    $term = taxonomy_term_load($tid);
+
+    $term = taxonomy_get_term_by_name(arg(2));
+    //dpm(arg(2));
+
+   // dpm($term_path);
+  //  dpm($tid);
+    // Изменяем фильтр у вьюса с названием front_page
+    if ($view->name == 'company_category') {
+
+
+    }
+}
+function get_tid_by_title($argument){
+
+    $alias= "category/".$argument;
+    $res = db_query("SELECT source , alias  FROM  {url_alias} ua WHERE ua.alias = :alias", array(':alias'=>$alias));
+    $id = "";
+    foreach ($res as $term) {
+        $path=  explode('/',$term->source);
+        $id= $path[2];
+    }
+    return $id;
+
+}
