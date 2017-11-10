@@ -161,8 +161,6 @@ function entity_list()             ///display admin page with aproval
 
 function entity_registration_delete($entity_registration)
 {
-    dpm($entity_registration);
-    print_r($entity_registration);
 
     $entity_registration_deleted = db_delete('entity_registration')
         ->condition('id', $entity_registration['id'])

@@ -27,71 +27,107 @@
  * @ingroup views_templates
  */
 ?>
-<div class="category_company_list">
-<h2> Каталог IT-компаний</h2>
+<div class="category_company_list left">
+    <h2> Каталог IT-компаний</h2>
     <div class="category">
         <?php print  get_company_categories(arg(2)); ?>
 
     </div>
-</div>
-<div class="<?php print $classes; ?>">
-    <?php print render($title_prefix); ?>
-    <?php if ($title): ?>
-        <?php print $title; ?>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
-    <?php if ($header): ?>
-        <div class="view-header">
-            <?php print $header; ?>
-        </div>
-    <?php endif; ?>
+    <div class="filters">
+        <?php $params = drupal_get_query_parameters(); ?>
+        <div class="view-swap">
+            <div class="table table-view active filter-elem">
 
-    <?php if ($exposed): ?>
+            </div>
+            <div class="map-view  filter-elem">
+
+            </div>
+        </div>
         <div class="view-filters">
-            <?php print $exposed; ?>
+            <div class="up <?php  if($params['sort_order'] == 'ASC'){ ?> active <?}?>"></div>
+            <div class="down <?php  if($params['sort_order'] == 'DESC'){ ?> active <?}?>"></div>
+            <div class="select-wrapper">
+                <select id="fake-edit-sort-by" name="sort_by" class="form-select">
+                    <option value="title" <?php  if($params['sort_by'] == 'title'){ ?> selected="selected" <?}?> >  Заголовок          </option>
+                    <option value="changed" <?php  if($params['sort_by'] == 'changed'){ ?> selected="selected" <?}?> >Дата  обновления          </option>
+                    <option value="random" <?php  if($params['sort_by'] == 'random'){ ?> selected="selected" <?}?> >По     популярности     </option>
+                </select>
+            </div>
+
         </div>
-    <?php endif; ?>
+    </div>
+    <div class="map-view">
+        <div id="map"  style="height: 400px;">
 
-    <?php if ($attachment_before): ?>
-        <div class="attachment attachment-before">
-            <?php print $attachment_before; ?>
         </div>
-    <?php endif; ?>
+    </div>
 
-    <?php if ($rows): ?>
-        <div class="view-content">
-            <?php print $rows; ?>
-        </div>
-    <?php elseif ($empty): ?>
-        <div class="view-empty">
-            <?php print $empty; ?>
-        </div>
-    <?php endif; ?>
 
-    <?php if ($pager): ?>
-        <?php print $pager; ?>
-    <?php endif; ?>
 
-    <?php if ($attachment_after): ?>
-        <div class="attachment attachment-after">
-            <?php print $attachment_after; ?>
-        </div>
-    <?php endif; ?>
 
-    <?php if ($more): ?>
-        <?php print $more; ?>
-    <?php endif; ?>
+    <div class="<?php print $classes; ?> table-view active">
+        <?php print render($title_prefix); ?>
+        <?php if ($title): ?>
+            <?php print $title; ?>
+        <?php endif; ?>
+        <?php print render($title_suffix); ?>
+        <?php if ($header): ?>
+            <div class="view-header">
+                <?php print $header; ?>
+            </div>
+        <?php endif; ?>
 
-    <?php if ($footer): ?>
-        <div class="view-footer">
-            <?php print $footer; ?>
-        </div>
-    <?php endif; ?>
+        <?php if ($exposed): ?>
+            <div class="view-filters">
+                <?php print $exposed; ?>
+            </div>
+        <?php endif; ?>
 
-    <?php if ($feed_icon): ?>
-        <div class="feed-icon">
-            <?php print $feed_icon; ?>
-        </div>
-    <?php endif; ?>
+        <?php if ($attachment_before): ?>
+            <div class="attachment attachment-before">
+                <?php print $attachment_before; ?>
+            </div>
+        <?php endif; ?>
 
-</div><?php /* class view */ ?>
+        <?php if ($rows): ?>
+            <div class="view-content">
+                <?php print $rows; ?>
+            </div>
+        <?php elseif ($empty): ?>
+            <div class="view-empty">
+                <?php print $empty; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($pager): ?>
+            <?php print $pager; ?>
+        <?php endif; ?>
+
+        <?php if ($attachment_after): ?>
+            <div class="attachment attachment-after">
+                <?php print $attachment_after; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($more): ?>
+            <?php print $more; ?>
+        <?php endif; ?>
+
+        <?php if ($footer): ?>
+            <div class="view-footer">
+                <?php print $footer; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($feed_icon): ?>
+            <div class="feed-icon">
+                <?php print $feed_icon; ?>
+            </div>
+        <?php endif; ?>
+
+    </div><?php /* class view */ ?>
+
+</div>
+<div class="right">
+
+</div>

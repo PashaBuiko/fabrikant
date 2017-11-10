@@ -81,174 +81,97 @@
  * @see template_process()
  */
 ?>
-<div id="node-<?php print $node->nid; ?> 1234567" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<div id="node-<?php print $node->nid; ?> "
+     class="<?php print $classes; ?> clearfix node-company"<?php print $attributes; ?>>
 
+    <?php dpm($node); ?>
+    <div class="node-title"> <?php print $node->title; ?></div>
 
-   <div class="node-title"> <?php print $node->title;?></div>
+    <?php //echo fivestar_widget_form($node); ?>
+    <?php print render($node->field_fivestar); ?>
+    <div class="main_rating"><?php print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?>
+    </div>
 
-
-    <?php  print render($content['field_fivestar']); ?>
-
-
-
-    <?php if (isset($node->field_logo['und'])) { $image = file_create_url($node->field_logo['und'][0]['uri']);
+    <?php if (isset($node->field_logo['und'])) {
+    $image = file_create_url($node->field_logo['und'][0]['uri']);
 
     ?>
     <div class="up-block">
-        <div class="image">   <img src="<?=$image;?>" class="logo_image"/></div>
+        <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
 
-    <?}?>
-    <div class="slogan_block">
-        <?php print render($content['field_slogan']); ?>
-    </div>
+        <? } ?>
+        <div class="slogan_block">
+            <?php print render($node->field_slogan['und'][0]['value']);
 
-
-    <div class="pb__contacts_block">
-        <div class="left">
-
+            ?>
+            <div class="slogan_text"><?php print render($node->field_under_slogan_text['und'][0]['value']);            ?></div>
         </div>
-     <div class="right">
-         <?php print render($content['field_address']); ?>
-         <?php print render($content['field_phone']); ?>
-         <?php print render($content['field_schedule']); ?>
 
-     </div>
 
+        <div class="pb__contacts_block">
+            <div class="left">
+
+            </div>
+            <div class="right">
+                <div class="field-name-field-address"><?php print render($node->field_address['und'][0]['value']); ?></div>
+                <div class="field-name-field-phone"><?php print render($node->field_phone['und'][0]['value']); ?></div>
+                <div class="field-name-field-schedule"><?php print render($node->field_schedule['und'][0]['value']); ?></div>
+            </div>
+        </div>
     </div>
-    </div>
 
-<nav class="company-navigation">
-    <?php
-         print company_custom_menu();
+    <nav class="company-navigation">
 
-    ?>
-</nav>
+        <?php
+        print company_custom_menu();
+
+        ?>
+    </nav>
 
     <div class="tab tab1 active">
         <div class="left-side">
             <h2>О компании</h2>
             <div class="compnay_slider">
-                <?php print render($content['field_slider']); ?>
+                <div class="field-name-field-slider">
+                    <div class="field-items">
+                        <?php $slider = $node->field_slider['und'];
+                        foreach ($slider as $key => $slide) {
 
+                            $image = file_create_url($slide['uri']);
+                            echo "<div><img src=" . $image . " /></div>";
+                        }
+
+                        ?>
+
+                    </div>
+                </div>
             </div>
             <div class="content">
-                <?php print render($content['body']); ?>
+                <?php print render($node->body['und'][0]['value']); ?>
             </div>
         </div>
         <div class="right-side">
             <div class="grey-block">
-                <?php
-
-                    print render($content['field_fabriks_type']);
-                    print render($content['field_unp']);
-
-
-                ?>
+                <div class="field-item">   <?php print render($node->field_fabriks_type['und'][0]['value']); ?></div>
+                <div class="field-item">   <?php print render($node->field_unp['und'][0]['value']); ?></div>
             </div>
             <div class="news-block">
                 <h2 class="title"> Новости компаний</h2>
                 <?php
-                print views_embed_view('company_goods', 'page_4',arg(1));
-                ?>
-            </div>
-            <?php   ///// left side
-
-
-
-
-            //    here must popoular news \\
-            print render($content['field_baner']);
-
-            ?>
-        </div>
-    </div>
-
-    <div class="tab tab2 ">
-        <div class="left-side">
-            <div class="term_tree">
-                          <?php
-        //   dpm( taxonomy_get_tree('goods_category'));
- //print_r( taxonomy_get_tree(5));
-
-         //  $tree= taxonomy_get_nested_tree(5);
-        // $output=theme_taxonomy_nested_tree($tree);
-         //  echo $output;
-
-
-           echo tax_tree_taxonomy_tree('goods_category');
-
-           ?>
-        </div>
-        </div>
-        <div class="right-side">
-            <?php
-            print views_embed_view('company_goods', 'page',arg(1));
-            ?>
-        </div>
-
-    </div>
-    <div class="tab tab3">
-        <div class="company_news_wrapper">
-            <?php
-            print views_embed_view('company_goods', 'page_1',arg(1));
-            ?>
-        </div>
-    </div>
-    <div class="tab tab4">
-        <div class="company_photogallery_wrapper">
-
-            <div class="custom_filter" style="display: none;">
-              <?php
-                 $object_terms= taxonomy_term_load_multiple(array(21,22,23,24));
-
-                 foreach ($object_terms as $term ){
-                     $file = file_create_url($term->field_image['und'][0]['uri']);
-                     ?>
-                     <img src="<?=$file;?>" alt="" class="<?= 'tid-'.$term->tid;?>">
-                <?
-                 }
-              ?>
-            </div>
-            <h2 class="block-title"> Фотогалерея </h2>
-            <?php
-            print views_embed_view('company_goods', 'page_2',arg(1));
-            ?>
-        </div>
-        <div class="right-side">
-            <div class="grey-block">
-                <?php
-
-                print render($content['field_fabriks_type']);
-                print render($content['field_unp']);
-
-
-                ?>
-            </div>
-            <div class="news-block">
-                <h2 class="title"> Новости компаний</h2>
-                <?php
-                print views_embed_view('company_goods', 'page_4',arg(1));
+               // print views_embed_view('company_goods', 'page_4', $node->nid);
                 ?>
             </div>
 
+            <div class="baner">
+                <?php ///// left side
 
-            <?php   ///// left side
+                $image = file_create_url($node->field_baner['und'][0]['uri']);                   ?>
+                <img src="<?=$image;?>" alt="" class="">
+            </div>
 
 
-
-
-            //    here must popoular news \\
-            print render($content['field_baner']);
-
-            ?>
         </div>
     </div>
-
-    <div class="tab tab5">
-        <?php print render($content['comments']); ?>
-    </div>
-
-
 
 
 </div><!-- /.node -->

@@ -299,6 +299,8 @@ function STARTERKIT_preprocess_page(&$variables, $hook)
         $variables['theme_hook_suggestions'][] = 'page__type__' . $variables['node']->type;
         $variables['theme_hook_suggestions'][] = "page__node__" . $variables['node']->nid;
     }
+    drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyB_9Ia3_kIy7_UAxGz2ts4sQ_Lq8FTTL2M&callback=initMap', 'header');
+
 }
 
 function company_custom_menu(){

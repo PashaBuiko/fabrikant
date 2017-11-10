@@ -119,9 +119,8 @@
             </div>
         </div>
     </div>
-
     <nav class="company-navigation">
-        <?php dpm(arg(3)) ?>
+
         <?php
         print company_custom_menu();
 

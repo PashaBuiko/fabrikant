@@ -176,12 +176,22 @@ function company_admin_node_presave($node){
     if ($node->type == 'photogallery' ){
         $company = company_admin_get_company();
         $node->field_company['und'][0]['target_id'] = $company->nid;
-
-
     }
 
+    if ($node->type == "company"){
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', 'node');
+        $query->propertyCondition('type', 'company'); // фильтр по типу ноды
+        $query->propertyCondition('status', 1); // фильтр по типу ноды
+        $result = $query->execute();
 
-
+       foreach (array_keys($result['node']) as $nid) {
+            $node_local = node_load($nid, NULL, TRUE);
+           dpm($node_local);
+            $node_local->field_leader['und'][0]['value'] ="";
+           // node_save($node_local);
+        }
+    }
 }
 
 function get_node_by_alias($node_title) {
@@ -222,7 +232,8 @@ function get_company_categories($term_id = null){
     $items[] = '<div class="'.$active.'">'.l('Все'." (".$node_count.")", 'category/company/' ).'</div>';;
     foreach ($terms as $term) {
         ($term->tid == $term_id)? $active="active" : $active='';
-        $items[] = '<div class="'.$active.'">'.l($term->name ." "."(".$term->node_count.")", 'category/company/'.$term->tid ).'</div>';
+        $path = str_replace(' ', '-',transliteration_get($term->name));
+        $items[] = '<div class="'.$active.'">'.l($term->name ." "."(".$term->node_count.")", 'category/company/'.strtolower($path)).'</div>';
     }
 
    return theme('item_list', array('items' => $items));
