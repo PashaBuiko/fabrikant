@@ -2529,6 +2529,8 @@ footer {
 
 .category_company_list {
   max-width: 70%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .category_company_list .item-list li {
@@ -2845,3 +2847,24 @@ footer {
     overflow: visible;
   }
 }
+ .leader_block{
+
+   display: inline-block;
+   width:26%;
+   vertical-align: top;
+   margin-top: 60px;
+   margin-left: 45px;
+   background: #71c6ad;
+   padding:15px;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   h3{
+     font-family: "OpenSans Regular";
+     margin-top:0;
+     text-align: center;
+   }
+   .view-content .views-row{
+     width:100%;
+   }
+ }

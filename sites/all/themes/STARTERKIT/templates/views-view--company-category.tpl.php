@@ -128,6 +128,10 @@
     </div><?php /* class view */ ?>
 
 </div>
-<div class="right">
+<div class="right leader_block">
+    <div class="leader view-company-category">
+        <h3>Лидер отрасли</h3>
 
+    <?php  print  views_embed_view('company_leader', 'block')  ?>
+    </div>
 </div>
