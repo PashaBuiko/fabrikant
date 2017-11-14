@@ -139,10 +139,26 @@
      ]
  });
 
+  jQuery('.goods-slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.goods-slider-nav'
+  });
+  jQuery('.goods-slider-nav').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      vertical: true,
+      asNavFor: '.goods-slider-for',
+      arrow:true,
+
+  });
+
 
 </script>
 
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_9Ia3_kIy7_UAxGz2ts4sQ_Lq8FTTL2M&callback=initMap"  ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_9Ia3_kIy7_UAxGz2ts4sQ_Lq8FTTL2M"  ></script>
 </body>
 </html>

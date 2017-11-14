@@ -389,6 +389,10 @@ function STARTERKIT_form_comment_form_alter(&$form, &$form_state) {
 
 }
 
+function get_company_by_goods($id_good){
+
+
+}
 
 
 

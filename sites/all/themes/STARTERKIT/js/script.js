@@ -35,3 +35,4 @@ jQuery('.slider-block').slick({
  // instead of a settings object
  ]
  });
+

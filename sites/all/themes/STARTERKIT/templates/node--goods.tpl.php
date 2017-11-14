@@ -81,47 +81,52 @@
  * @see template_process()
  */
 ?>
-<div  id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix single-good"<?php print $attributes; ?> >
+<div id="node-<?php print $node->nid; ?>"
+     class="<?php print $classes; ?> clearfix single-good node-company"<?php print $attributes; ?> >
 
-    <div class="node-title"> <?php print $node->title;?></div>
 
+    <?php $id = $node->field_company['und'][0]['target_id'];
+    $node_company = node_load($id);
+    ?>
+
+    <div class="node-title"> <?php print $node_company->title; ?></div>
 
 
     <?php
-    $field = field_get_items('node', $node, 'field_fivestar');
-    $body = field_view_value('node', $node, 'field_fivestar', $field[0]);
-               //$output = render($body);
+    // $field = field_get_items('node', $node_company, 'field_fivestar');
+    // $body = field_view_value('node', $node_company, 'field_fivestar', $field[0]);
+    //$output = render($body);
 
-    print views_embed_view('company_goods', 'block_1',$node->nid);
-    // print render($content['field_fivestar']); ?>
-
-
-    <?php if (isset($node->field_logo['und'])) { $image = file_create_url($node->field_logo['und'][0]['uri']);
+    print views_embed_view('company_goods', 'block_1', $node_company->nid);
 
     ?>
-    <div class="up-block">
-        <div class="image">   <img src="<?=$image;?>" class="logo_image"/></div>
-
-        <?}?>
-        <div class="slogan_block">
-            <?php // print render($content['field_slogan']); ?>
-        </div>
 
 
-        <div class="pb__contacts_block">
-            <div class="left">
+    <?php if (isset($node_company->field_logo['und'])) {
+        $image = file_create_url($node_company->field_logo['und'][0]['uri']);
 
-            </div>
-            <div class="right">
-                <?php // print render($content['field_address']); ?>
-                <?php //print render($content['field_phone']); ?>
-                <?php //print render($content['field_schedule']); ?>
+        ?>
+        <div class="up-block">
+            <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
 
+
+            <div class="slogan_block">
+                <?php print  $node_company->field_slogan['und'][0]['value']; ?>
+                <div class="slogan_text"><?php print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
             </div>
 
-        </div>
-    </div>
+            <div class="pb__contacts_block">
+                <div class="left">
 
+                </div>
+                <div class="right">
+                    <?php print $node_company->field_address['und'][0]['value']; ?>
+                    <?php print $node_company->field_phone['und'][0]['value']; ?>
+                    <?php print $node_company->field_schedule['und'][0]['value']; ?>
+                </div>
+            </div>
+        </div>
+    <? } ?>
     <nav class="company-navigation">
         <?php
         print company_custom_menu();
@@ -132,7 +137,7 @@
     <?php if (!$page && $title): ?>
         <h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
     <?php endif; ?>
-    <?php// print render($title_suffix); ?>
+    <?php // print render($title_suffix); ?>
 
     <?php if ($unpublished): ?>
         <div class="unpublished"><?php //print t('Unpublished'); ?></div>
@@ -147,11 +152,72 @@
     <div class="content"<?php print $content_attributes; ?>>
         <?php
         // We hide the comments and links now so that we can render them later.
-        hide($content['comments']);
-        hide($content['links']);
-        print render($content);
+        // hide($content['comments']);
+        //hide($content['links']);
+        // print render($content);
+
 
         ?>
+        <a href="/tovary" class="return">< Вернуться в каталог товаров</a>
+        <div class="content-wrapper">
+            <div class="left-block">
+                <div class="sliders-block">
+                    <div class="goods-slider-for">
+                        <?php $slider = $node->field_slider['und'];
+                        foreach ($slider as $key => $slide) {
+
+                            $image = file_create_url($slide['uri']);
+                            echo "<div><img src=" . $image . " /></div>";
+                        }
+
+                        ?>
+                    </div>
+                    <div class="goods-slider-nav">
+                        <?php $slider = $node->field_slider['und'];
+                        foreach ($slider as $key => $slide) {
+
+                            $image = file_create_url($slide['uri']);
+                            echo "<div><img src=" . $image . " /></div>";
+                        }
+
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-block">
+                <div class="goods-title">
+                    <span > <?php print $node->title; ?></span>
+
+                    <a href="">Заказать</a>
+                </div>
+                <div class="price">
+                     <?= $node->field_price['und'][0]['value']; ?>
+                </div>
+                <div class="goods-description">
+                    <?= $node->body['und'][0]['value']; ?>
+                </div>
+                <div class="goods-params">
+                    <?= $node->field_params['und'][0]['value']; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="center-content">
+        <div class="characters-wrapper">
+            <div class="title"> <p>Характеристики</p></div>
+            <div class="table-title">
+                <p>Характеристика</p>
+                <p>Параметр</p>
+            </div>
+            <div class="list">
+            <?=  $node->field_characters['und'][0]['value']; ?>
+            </div>
+        </div>
+        <div class="adding-description">
+            <?=  $node->field_adding_description['und'][0]['value']; ?>
+        </div>
+
     </div>
 
     <?php print render($content['links']); ?>

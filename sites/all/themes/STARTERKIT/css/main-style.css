@@ -2155,22 +2155,194 @@ footer {
     height: auto;
     overflow: visible; }
 
-.leader_block {
+.leader_block_wrapper {
   display: inline-block;
   width: 26%;
-  vertical-align: top;
-  margin-top: 60px;
-  margin-left: 45px;
-  background: #71c6ad;
-  padding: 15px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-  .leader_block h3 {
-    font-family: "OpenSans Regular";
-    margin-top: 0;
-    text-align: center; }
-  .leader_block .view-content .views-row {
-    width: 100%; }
+  vertical-align: top; }
+  .leader_block_wrapper .leader_block {
+    margin-top: 60px;
+    margin-left: 45px;
+    background: #71c6ad;
+    padding: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .leader_block_wrapper .leader_block h3 {
+      font-family: "OpenSans Regular";
+      margin-top: 0;
+      text-align: center;
+      font-size: 24px; }
+    .leader_block_wrapper .leader_block .view-content .views-row {
+      width: 100%;
+      background: #0fa3a5; }
+  .leader_block_wrapper .company-baner {
+    padding-top: 35px;
+    margin-left: 45px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .leader_block_wrapper .company-baner img {
+      width: 100%; }
+
+.single-good .return {
+  text-decoration: none;
+  display: block;
+  color: black;
+  margin-bottom: 20px; }
+.single-good .content-wrapper {
+  font-size: 0; }
+  .single-good .content-wrapper .left-block {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%; }
+    .single-good .content-wrapper .left-block .sliders-block {
+      display: flex;
+      justify-content: space-between; }
+    .single-good .content-wrapper .left-block .goods-slider-for {
+      max-width: 450px;
+      width: 450px;
+      height: 450px;
+      margin-bottom: 20px;
+      margin-right: 40px; }
+      .single-good .content-wrapper .left-block .goods-slider-for img {
+        width: 100%; }
+    .single-good .content-wrapper .left-block .goods-slider-nav .slick-prev {
+      background: #0fa57e;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      z-index: 999;
+      width: 30px;
+      height: 30px;
+      left: 38px;
+      top: 0; }
+      .single-good .content-wrapper .left-block .goods-slider-nav .slick-prev:before {
+        content: '';
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: url(../images/arrow-prev-slider.png) no-repeat;
+        background-position: center;
+        background-size: 12px;
+        top: 0;
+        left: 0;
+        transform: rotate(90deg); }
+    .single-good .content-wrapper .left-block .goods-slider-nav .slick-next {
+      background: #0fa57e;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      z-index: 999;
+      width: 30px;
+      height: 30px;
+      top: auto;
+      right: 142px;
+      bottom: -10px; }
+      .single-good .content-wrapper .left-block .goods-slider-nav .slick-next:before {
+        content: '';
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: url(../images/arrow-next-slider.png) no-repeat;
+        background-position: center;
+        background-size: 12px;
+        top: 0;
+        left: 0;
+        transform: rotate(90deg); }
+    .single-good .content-wrapper .left-block .goods-slider-nav .slick-slide {
+      margin-bottom: 14px; }
+    .single-good .content-wrapper .left-block .goods-slider-nav img {
+      width: 100px;
+      height: 100px; }
+  .single-good .content-wrapper .right-block {
+    font-size: 18px;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top; }
+    .single-good .content-wrapper .right-block .goods-title {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px; }
+      .single-good .content-wrapper .right-block .goods-title span {
+        font-family: "OpenSans SemiBold";
+        font-size: 26px;
+        font-weight: 600; }
+      .single-good .content-wrapper .right-block .goods-title a {
+        background: #0fa57e;
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        text-align: center; }
+    .single-good .content-wrapper .right-block .price {
+      font-family: "OpenSans SemiBold";
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 45px; }
+    .single-good .content-wrapper .right-block .goods-description p {
+      font-size: 16px; }
+    .single-good .content-wrapper .right-block .goods-params p {
+      margin-bottom: 0;
+      margin-top: 10px; }
+.single-good .characters-wrapper {
+  background: #ebf9f4; }
+  .single-good .characters-wrapper .title {
+    background: #fff; }
+    .single-good .characters-wrapper .title p {
+      text-align: center;
+      max-width: 300px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: #ebf9f4;
+      font-family: "OpenSans Regular";
+      font-size: 18px;
+      font-weight: 600; }
+  .single-good .characters-wrapper .table-title {
+    display: flex;
+    max-width: 1155px;
+    margin: 0 auto;
+    justify-content: space-between; }
+    .single-good .characters-wrapper .table-title p:first-child {
+      width: 320px;
+      text-align: center;
+      color: #0fa57e;
+      font-family: "OpenSans Regular";
+      font-size: 18px;
+      font-weight: 600; }
+    .single-good .characters-wrapper .table-title p:last-child {
+      width: auto;
+      text-align: center;
+      flex-grow: 2;
+      color: #0fa57e;
+      font-family: "OpenSans Regular";
+      font-size: 18px;
+      font-weight: 600; }
+  .single-good .characters-wrapper .list {
+    max-width: 1155px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    margin-bottom: 30px; }
+    .single-good .characters-wrapper .list .item {
+      display: flex;
+      justify-content: space-between; }
+      .single-good .characters-wrapper .list .item:nth-child(2n-1) {
+        background: #ebedec; }
+      .single-good .characters-wrapper .list .item p:first-child {
+        width: 320px;
+        text-align: center;
+        font-family: "OpenSans Regular";
+        font-size: 16px;
+        font-weight: 600; }
+      .single-good .characters-wrapper .list .item p:last-child {
+        flex-grow: 2;
+        font-family: "OpenSans Regular";
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center; }
+.single-good .adding-description p {
+  font-family: "OpenSans Regular";
+  font-size: 16px; }
 
 /*# sourceMappingURL=main-style.css.map */
