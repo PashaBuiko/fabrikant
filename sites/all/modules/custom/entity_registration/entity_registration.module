@@ -5,7 +5,7 @@ define('NOT_APROVE', '0');
 
 function entity_registration_menu()
 {
-    $items['my_custom_url'] = array(
+    $items['add_company'] = array(
         'title' => t('Заголовок страницы'),
         'description' => t('Эта страница скрыта от посторонних.'),
         'page callback' => 'company_registration_page',
@@ -29,14 +29,6 @@ function entity_registration_menu()
         'type'              => MENU_CALLBACK,
 
     );
-    $items['mypage'] = array(
-        'title' => 'Page name',
-        'description' => t('Some page'),
-        /* ... */
-        'menu_name' => 'management',
-        /* ... */
-    );
-
 
 
     $items['admin/config/content/entity_registration/%/delete'] = array(
@@ -52,10 +44,7 @@ function entity_registration_menu()
 }
 
     function entity_registration_preview( $entity_registration) {                 ///// preview  for entity reg company
-         dpm($entity_registration);
          $entity_registration_list =    get_entity_registrtion($entity_registration);
-         dpm($entity_registration_list[0]->id);
-
          $output = "Страна:".$entity_registration_list[0]->country  .'<br>';
          $output .= "Область:".$entity_registration_list[0]->region .'<br>';
          $output .= "улица:".$entity_registration_list[0]->street   .'<br>';
@@ -96,7 +85,7 @@ function entity_registration_delete_confirm_submit($form, &$form_state) {
         $entity_registration_deleted = db_delete('entity_registration')
             ->condition('id', $entity_registration_id)
             ->execute();
-        drupal_set_message(t('RSS Feed deleted!'));
+        drupal_set_message(t('Company deleted!'));
         drupal_goto('admin/config/content/entity_registration');
 
     }
@@ -166,13 +155,12 @@ function entity_list()             ///display admin page with aproval
 
 function entity_registration_delete($entity_registration)
 {
-    dpm($entity_registration);
-    print_r($entity_registration);
+
 
     $entity_registration_deleted = db_delete('entity_registration')
         ->condition('id', $entity_registration['id'])
         ->execute();
-    drupal_set_message(t('RSS Feed deleted!'));
+    drupal_set_message(t('Company  deleted!'));
     drupal_goto('admin/config/content/entity_registration');
 }
 function company_aproval_form($form, &$form_state, $value){         //// form for admin aproval
@@ -267,12 +255,6 @@ function company_aproval_form_submit($form, &$form_state){         //// form for
      } else {
         drupal_set_message('Ошибка одобрения создания компании ', 'error');
      }
-
-
-
-
-
-
 }
 
 

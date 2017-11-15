@@ -187,8 +187,7 @@ function company_admin_node_presave($node){
 
        foreach (array_keys($result['node']) as $nid) {
             $node_local = node_load($nid, NULL, TRUE);
-           dpm($node_local);
-            $node_local->field_leader['und'][0]['value'] ="";
+             $node_local->field_leader['und'][0]['value'] ="";
            // node_save($node_local);
         }
     }

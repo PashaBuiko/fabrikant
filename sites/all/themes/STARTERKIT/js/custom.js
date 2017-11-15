@@ -42,6 +42,11 @@
             });
             if (!$('.login').length) {
                 $(' <a href="/" class="login">Войти </a>').once().insertAfter($('#edit-author--2 a'));
+
+            }
+            if (!$('.login-news').length) {
+                $(' <a href="/" class="login-news">Войти </a>').once().insertAfter($('#edit-author--4 a'));
+
             }
 
 

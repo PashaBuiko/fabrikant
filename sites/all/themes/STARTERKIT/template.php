@@ -374,10 +374,10 @@ function STARTERKIT_pager_last($variables) {
         $text ="...";
     }
     // If we are anywhere but the last page
+
     if ($pager_page_array[$element] < ($pager_total[$element] - 1)) {
         $output = theme('pager_link', array('text' => $text, 'page_new' => pager_load_array($pager_total[$element] - 1, $element, $pager_page_array), 'element' => $element, 'parameters' => $parameters));
     }
-
     return $output;
 }
 
@@ -386,7 +386,6 @@ function STARTERKIT_form_comment_form_alter(&$form, &$form_state) {
     $form['author']['_author']['#title'] = t('Отображаемое имя');
     $form['actions']['submit']['#value'] = t('Отправить');
     $form['actions']['preview'] = NULL;
-
 }
 
 function get_company_by_goods($id_good){

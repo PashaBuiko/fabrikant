@@ -172,12 +172,12 @@
     margin-top: -90px; }
     .person-block .wrapper .right-block h2 {
       margin-top: 0; }
-    .person-block .wrapper .right-block .view-company-news .views-field-field-image {
+    .person-block .wrapper .right-block .view-company-news .views-field-field-image, .person-block .wrapper .right-block .view-company-news .views-field-field-image- {
       max-width: 100px;
       max-height: 100px;
       display: inline-block;
       vertical-align: top; }
-      .person-block .wrapper .right-block .view-company-news .views-field-field-image img {
+      .person-block .wrapper .right-block .view-company-news .views-field-field-image img, .person-block .wrapper .right-block .view-company-news .views-field-field-image- img {
         width: 100%;
         height: 100%; }
     .person-block .wrapper .right-block .view-company-news .views-field-title {
@@ -402,7 +402,7 @@
   background-size: 100%; }
   .season-goods h2 {
     color: #000000;
-    margin: 70px 0px;
+    margin: 50px 0px;
     font-size: 26px;
     font-family: "OpenSans SemiBold";
     text-transform: uppercase;
@@ -472,7 +472,8 @@
           width: 50%;
           font-size: 16px; }
           .season-goods .view-season-goods .view-content .left-part .left-block img {
-            width: 300px; }
+            width: 100%;
+            height: 333px; }
         .season-goods .view-season-goods .view-content .left-part .right-block {
           display: inline-block;
           vertical-align: top;
@@ -484,11 +485,12 @@
             .season-goods .view-season-goods .view-content .left-part .right-block .views-row:not(:last-child) {
               margin-bottom: 40px; }
             .season-goods .view-season-goods .view-content .left-part .right-block .views-row img {
-              max-height: 145px; }
+              max-height: 145px;
+              width: 280px; }
       .season-goods .view-season-goods .view-content .right-part {
         display: inline-block;
         box-sizing: border-box;
-        padding-left: 90px;
+        padding-left: 25px;
         vertical-align: top;
         width: 50%;
         font-size: 16px; }
@@ -500,12 +502,12 @@
             width: 50%;
             vertical-align: top; }
             .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(1) img {
-              width: 200px;
+              width: 315px;
               max-height: 146px; }
             .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) .field-content {
               float: right; }
             .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) img {
-              width: 300px;
+              width: 315px;
               max-height: 146px; }
         .season-goods .view-season-goods .view-content .right-part .bottom-block img {
           width: 100%;
@@ -1701,12 +1703,12 @@ footer {
   display: none; }
 .page-company .resizable-textarea .grippie {
   display: none; }
-.page-company #edit-author--2 {
+.page-company #edit-author--2, .page-company #edit-author--4 {
   position: absolute;
   top: -245px; }
-  .page-company #edit-author--2 label {
+  .page-company #edit-author--2 label, .page-company #edit-author--4 label {
     font-size: 16px; }
-  .page-company #edit-author--2 a {
+  .page-company #edit-author--2 a, .page-company #edit-author--4 a {
     position: absolute;
     left: 180px;
     top: 35px;
@@ -1721,7 +1723,7 @@ footer {
     padding-top: 0px;
     padding-left: 40px;
     box-sizing: border-box; }
-    .page-company #edit-author--2 a.login {
+    .page-company #edit-author--2 a.login, .page-company #edit-author--2 a.login-news, .page-company #edit-author--4 a.login, .page-company #edit-author--4 a.login-news {
       top: 35px;
       left: 600px;
       width: 200px;
@@ -1755,11 +1757,12 @@ footer {
 .rating_comment .fivestar-widget {
   margin-bottom: 0px; }
 
-#edit-comment-body-und-0-value {
+#edit-comment-body-und-0-value, #edit-comment-body-und-0-value--2 {
   height: 300px;
   background: #f1f1f1;
   resize: none;
-  padding: 10px; }
+  padding: 10px;
+  max-width: 800px; }
 
 #ajax-comments-reply-form-161-0-0 .form-submit {
   width: 200px;
@@ -2184,11 +2187,12 @@ footer {
     .leader_block_wrapper .company-baner img {
       width: 100%; }
 
-.single-good .return {
+.return {
   text-decoration: none;
   display: block;
   color: black;
   margin-bottom: 20px; }
+
 .single-good .content-wrapper {
   font-size: 0; }
   .single-good .content-wrapper .left-block {
@@ -2344,5 +2348,68 @@ footer {
 .single-good .adding-description p {
   font-family: "OpenSans Regular";
   font-size: 16px; }
+
+.socials {
+  display: flex;
+  justify-content: space-between;
+  max-width: 230px; }
+  .socials a {
+    width: 30px;
+    height: 30px;
+    display: block; }
+  .socials .facebook {
+    background: url("../images/facebook.png") no-repeat;
+    background-size: 100%; }
+  .socials .gmail {
+    background: url("../images/gmail.png") no-repeat;
+    background-size: 100%; }
+  .socials .vk {
+    background: url("../images/vk.png") no-repeat;
+    background-size: 100%; }
+  .socials .ok {
+    background: url("../images/ok-news.png") no-repeat;
+    background-size: 100%; }
+  .socials .twitter {
+    background: url("../images/twitter.png") no-repeat;
+    background-size: 100%; }
+  .socials .linkedin {
+    background: url("../images/linkedin.png") no-repeat;
+    background-size: 100%; }
+
+#edit-submit--2, .user-info-from-cookie #edit-submit {
+  width: 200px;
+  color: white;
+  background: #0fa57e;
+  border: none;
+  height: 40px;
+  font-size: 18px; }
+
+.node-company-news .page-company #edit-author--4 {
+  top: -192px; }
+
+.password-suggestions.description {
+  display: none; }
+
+.user-info-from-cookie .description {
+  display: none; }
+
+.user-info-from-cookie input {
+  height: 40px;
+  background: #f1f1f1;
+  padding-left: 10px;
+  font-family: "OpenSans Regular";
+  color: black;
+  margin-bottom: 5px;
+  position: relative;
+  border: 1px solid #c5c5c5; }
+
+.user-info-from-cookie label {
+  color: #000000;
+  font-size: 20px;
+  font-family: "OpenSans SemiBold";
+  margin-bottom: 5px; }
+
+.pager-ellipsis {
+  display: none !important; }
 
 /*# sourceMappingURL=main-style.css.map */
