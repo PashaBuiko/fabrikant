@@ -44,13 +44,13 @@
             </div>
         </div>
         <div class="view-filters">
-            <div class="up <?php  if($params['sort_order'] == 'ASC'){ ?> active <?}?>"></div>
-            <div class="down <?php  if($params['sort_order'] == 'DESC'){ ?> active <?}?>"></div>
+            <div class="up <?php  if( isset($params['sort_order']) && $params['sort_order'] == 'ASC'){ ?> active <?}?>"></div>
+            <div class="down <?php  if( isset($params['sort_order'] ) && $params['sort_order'] == 'DESC'){ ?> active <?}?>"></div>
             <div class="select-wrapper">
                 <select id="fake-edit-sort-by" name="sort_by" class="form-select">
-                    <option value="title" <?php  if($params['sort_by'] == 'title'){ ?> selected="selected" <?}?> >  Заголовок          </option>
-                    <option value="changed" <?php  if($params['sort_by'] == 'changed'){ ?> selected="selected" <?}?> >Дата  обновления          </option>
-                    <option value="random" <?php  if($params['sort_by'] == 'random'){ ?> selected="selected" <?}?> >По     популярности     </option>
+                    <option value="title" <?php  if( isset($params['sort_by']) && $params['sort_by'] == 'title'){ ?> selected="selected" <?}?> >  Заголовок          </option>
+                    <option value="changed" <?php  if(isset($params['sort_by']) && $params['sort_by'] == 'changed'){ ?> selected="selected" <?}?> >Дата  обновления          </option>
+                    <option value="random" <?php  if(isset($params['sort_by']) && $params['sort_by'] == 'random'){ ?> selected="selected" <?}?> >По     популярности     </option>
                 </select>
             </div>
 

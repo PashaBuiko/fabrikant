@@ -84,11 +84,8 @@
 <div id="node-<?php print $node->nid; ?> "
      class="<?php print $classes; ?> clearfix node-company"<?php print $attributes; ?>>
 
-    <?php dpm($node); ?>
     <div class="node-title"> <?php print $node->title; ?></div>
 
-    <?php //echo fivestar_widget_form($node); ?>
-    <?php print render($node->field_fivestar); ?>
     <div class="main_rating"><?php print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?>
     </div>
 

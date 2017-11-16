@@ -77,7 +77,7 @@
         </div>
         <div class="right-block">
             <div class="autorization-block">
-                <a href="">Авторизация</a>
+                <a href="/user/register">Авторизация</a>
             </div>
             <div class="search-filter">
                 <div class="view-filters">

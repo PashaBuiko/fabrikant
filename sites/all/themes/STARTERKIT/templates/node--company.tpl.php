@@ -84,11 +84,9 @@
 <div id="node-<?php print $node->nid; ?> "
      class="<?php print $classes; ?> clearfix node-company"<?php print $attributes; ?>>
 
-    <?php dpm($node); ?>
     <div class="node-title"> <?php print $node->title; ?></div>
 
-    <?php //echo fivestar_widget_form($node); ?>
-    <?php print render($node->field_fivestar); ?>
+
     <div class="main_rating"><?php print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?>
     </div>
 
@@ -101,10 +99,10 @@
 
         <? } ?>
         <div class="slogan_block">
-            <?php print render($node->field_slogan['und'][0]['value']);
+            <?php print $node->field_slogan['und'][0]['value'];
 
             ?>
-            <div class="slogan_text"><?php print render($node->field_under_slogan_text['und'][0]['value']);            ?></div>
+            <div class="slogan_text"><?php print $node->field_under_slogan_text['und'][0]['value'];            ?></div>
         </div>
 
 
@@ -119,7 +117,6 @@
             </div>
         </div>
     </div>
-
     <nav class="company-navigation">
 
         <?php
@@ -140,9 +137,7 @@
                             $image = file_create_url($slide['uri']);
                             echo "<div><img src=" . $image . " /></div>";
                         }
-
                         ?>
-
                     </div>
                 </div>
             </div>
@@ -158,20 +153,14 @@
             <div class="news-block">
                 <h2 class="title"> Новости компаний</h2>
                 <?php
-               // print views_embed_view('company_goods', 'page_4', $node->nid);
+                print views_embed_view('company_goods', 'page_4', $node->nid);
                 ?>
             </div>
-
             <div class="baner">
                 <?php ///// left side
-
                 $image = file_create_url($node->field_baner['und'][0]['uri']);                   ?>
-                <img src="<?=$image;?>" alt="" class="">
+                <img src="<?= $image;?>" alt="" class="">
             </div>
-
-
         </div>
     </div>
-
-
 </div><!-- /.node -->

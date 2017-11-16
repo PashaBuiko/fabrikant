@@ -91,9 +91,7 @@
 
 
     <?php
-    // $field = field_get_items('node', $node_company, 'field_fivestar');
-    // $body = field_view_value('node', $node_company, 'field_fivestar', $field[0]);
-    //$output = render($body);
+
 
     print views_embed_view('company_goods', 'block_1', $node_company->nid);
 

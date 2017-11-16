@@ -5,7 +5,7 @@ function company_admin_menu()
 {
 
     $items['company/%'] = array(
-        'title' => 'My gallery',
+        'title' => 'Компания ' . 1,
         'page callback' => 'company_page',
         'page arguments' => array(1, 'main-page'),
         'access callback' => TRUE,
@@ -14,47 +14,39 @@ function company_admin_menu()
     );
 
     $items['company/%/products'] = array(
-        'title' => 'My gallery',
+        'title' => 'Продукты компании '  . 1,
         'page callback' => 'company_page',
-        'page arguments' => array(1,'products-page'),
+        'page arguments' => array(1, 'products-page'),
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'company-menu',
     );
     $items['company/%/news'] = array(
-        'title' => 'My gallery',
+        'title' => 'Новости компании ' . 1,
         'page callback' => 'company_page',
-        'page arguments' => array(1 , 'news-page'),
+        'page arguments' => array(1, 'news-page'),
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'company-menu',
     );
     $items['company/%/gallery'] = array(
-        'title' => 'My gallery',
+        'title' => 'Фотогалерея компании ' . 1,
         'page callback' => 'company_page',
-        'page arguments' => array(1 , 'gallery-page'),
+        'page arguments' => array(1, 'gallery-page'),
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'company-menu',
     );
 
     $items['company/%/reviews'] = array(
-        'title' => 'My gallery',
+        'title' => 'Отзывы компании ' . 1,
         'page callback' => 'company_page',
-        'page arguments' => array(1 , 'review-page'),
+        'page arguments' => array(1, 'review-page'),
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
         'menu_name' => 'company-menu',
     );
 
-
-    $items['example/%'] = array(
-        'title' => 'My Page',
-        'page callback' => 'show_link',
-        'access callback' => 'example_user_has_role',
-        'access arguments' => array(1, array('company_admin')), // arg 1 loads the user, arg 2 is the role name
-        'type' => MENU_NORMAL_ITEM,
-    );
     return $items;
 }
 
@@ -67,28 +59,38 @@ function show_link()
 function example_user_has_role($user, $roles = array())
 {
     $current_user = user_load_by_name($user);
-    if (  $current_user && $roles) {
+    if ($current_user && $roles) {
         foreach ($roles as $role) {
-                 if (in_array($role, $current_user->roles)) {
+            if (in_array($role, $current_user->roles)) {
                 return TRUE;
             }
         }
     }
     return false;
 }
-function company_page($node_title, $type){
+
+function company_page($node_title, $type)
+{
     $node = get_node_by_alias($node_title);
-    $template_name ="";
-    switch ($type){
-        case 'main-page': $template_name ="main"; break;
-        case 'products-page': $template_name ="products"; break;
-        case 'news-page': $template_name ="news"; break;
-        case 'gallery-page': $template_name ="gallery"; break;
-        case 'review-page': $template_name ="review"; break;
+    $template_name = "";
+    switch ($type) {
+        case 'main-page':
+            $template_name = "main";
+            break;
+        case 'products-page':
+            $template_name = "products";
+            break;
+        case 'news-page':
+            $template_name = "news";
+            break;
+        case 'gallery-page':
+            $template_name = "gallery";
+            break;
+        case 'review-page':
+            $template_name = "review";
+            break;
     }
-
-
-    return theme($template_name.'_template', array('node' => $node)); // call a theme or you have no pass any argument in theme to change a 'nodes'=> NULL or 'pager'=>NULL
+    return theme($template_name . '_template', array('node' => $node)); // call a theme or you have no pass any argument in theme to change a 'nodes'=> NULL or 'pager'=>NULL
 }
 
 
@@ -143,8 +145,11 @@ function company_admin_node_validate($node, $form, &$form_state)
         ->execute()
         ->fetchField();
 
-    if ($count > 0 &&  !$node->nid && $user->uid != 1 && $node->type=="company" ) {
+    if ($count > 0 && !$node->nid && $user->uid != 1 && $node->type == "company") {
         form_set_error('time', t('Вы не можете создать более, чем 1 компанию'));
+    }
+    if ($node->type == 'goods') {
+        change_status_last();
     }
 }
 
@@ -160,41 +165,46 @@ function company_admin_get_company()
 
     return $nodes[0];
 }
-function company_admin_node_presave($node){
-    if ($node->type == 'goods' ){
+
+function company_admin_node_presave($node)
+{
+    if ($node->type == 'goods') {
         $company = company_admin_get_company();
         $node->field_company['und'][0]['target_id'] = $company->nid;
-        $alias = explode('/',drupal_get_path_alias('node/'.$company->nid));
-
+        $alias = explode('/', drupal_get_path_alias('node/' . $company->nid));
         $node->field_alias['und'][0]['value'] = $alias[1];
+
+       // change_status_last();
+
     }
 
-    if ($node->type == 'company_news' ){
+    if ($node->type == 'company_news') {
         $company = company_admin_get_company();
         $node->field_company['und'][0]['target_id'] = $company->nid;
     }
-    if ($node->type == 'photogallery' ){
+    if ($node->type == 'photogallery') {
         $company = company_admin_get_company();
         $node->field_company['und'][0]['target_id'] = $company->nid;
     }
+/*
+        if ($node->type == "company"){
+            $query = new EntityFieldQuery();
+            $query->entityCondition('entity_type', 'node');
+            $query->propertyCondition('type', 'company'); // фильтр по типу ноды
+            $query->propertyCondition('status', 1); // фильтр по типу ноды
+            $result = $query->execute();
 
-    if ($node->type == "company"){
-        $query = new EntityFieldQuery();
-        $query->entityCondition('entity_type', 'node');
-        $query->propertyCondition('type', 'company'); // фильтр по типу ноды
-        $query->propertyCondition('status', 1); // фильтр по типу ноды
-        $result = $query->execute();
-
-       foreach (array_keys($result['node']) as $nid) {
-            $node_local = node_load($nid, NULL, TRUE);
-             $node_local->field_leader['und'][0]['value'] ="";
-           // node_save($node_local);
-        }
-    }
+           foreach (array_keys($result['node']) as $nid) {
+                $node_local = node_load($nid, NULL, TRUE);
+                 $node_local->field_leader['und'][0]['value'] ="";
+               // node_save($node_local);
+            }
+        }*/
 }
 
-function get_node_by_alias($node_title) {
-    $alias = "company/" . $node_title.'/about';
+function get_node_by_alias($node_title)
+{
+    $alias = "company/" . $node_title . '/about';
     $path = drupal_lookup_path("source", $alias);
     $node = menu_get_object("node", 1, $path);
     return $node;
@@ -202,7 +212,8 @@ function get_node_by_alias($node_title) {
 }
 
 
-function get_company_categories($term_id = null){
+function get_company_categories($term_id = null)
+{
 
 
     $terms = db_query("
@@ -222,49 +233,49 @@ function get_company_categories($term_id = null){
     $node_count = $query->execute()->fetchField();
 
     $items = array();
-    if (!$term_id){
-        $active = "active";
-    }
-    else{
-        $active = "";
-    }
-    $items[] = '<div class="'.$active.'">'.l('Все'." (".$node_count.")", 'category/company/' ).'</div>';;
+    (!$term_id) ? $active = "active":  $active = "";
+
+    $items[] = '<div class="' . $active . '">' . l('Все' . " (" . $node_count . ")", 'category/company/') . '</div>';;
     foreach ($terms as $term) {
-        ($term->tid == $term_id)? $active="active" : $active='';
-        $path = str_replace(' ', '-',transliteration_get($term->name));
-        $items[] = '<div class="'.$active.'">'.l($term->name ." "."(".$term->node_count.")", 'category/company/'.strtolower($path)).'</div>';
+        ($term->tid == $term_id) ? $active = "active" : $active = '';
+        $path = str_replace(' ', '-', transliteration_get($term->name));
+        $items[] = '<div class="' . $active . '">' . l($term->name . " " . "(" . $term->node_count . ")", 'category/company/' . strtolower($path)) . '</div>';
     }
 
-   return theme('item_list', array('items' => $items));
+    return theme('item_list', array('items' => $items));
 }
 
-function company_admin_views_query_alter(&$view, &$query) {
 
-
-    $term_path=drupal_get_normal_path('category/company/'.arg(2));
-    $tid = basename($term_path);
-    $term = taxonomy_term_load($tid);
-
-    $term = taxonomy_get_term_by_name(arg(2));
-    //dpm(arg(2));
-
-   // dpm($term_path);
-  //  dpm($tid);
-    // Изменяем фильтр у вьюса с названием front_page
-    if ($view->name == 'company_category') {
-
-
-    }
-}
-function get_tid_by_title($argument){
-
-    $alias= "category/".$argument;
-    $res = db_query("SELECT source , alias  FROM  {url_alias} ua WHERE ua.alias = :alias", array(':alias'=>$alias));
+function get_tid_by_title($argument)
+{
+    $alias = "category/" . $argument;
+    $res = db_query("SELECT source , alias  FROM  {url_alias} ua WHERE ua.alias = :alias", array(':alias' => $alias));
     $id = "";
     foreach ($res as $term) {
-        $path=  explode('/',$term->source);
-        $id= $path[2];
+        $path = explode('/', $term->source);
+        $id = $path[2];
     }
     return $id;
 
 }
+
+function change_status_last(){
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node');
+    $query->propertyCondition('type', 'goods'); // фильтр по типу ноды
+    $query->propertyCondition('status', 1); // фильтр по типу ноды
+    $query->fieldCondition('field_last_good', 'value', "1", '=');
+    $result = $query->execute();
+
+    foreach (array_keys($result['node']) as $node_nid) {
+
+        $node_local = node_load($node_nid, NULL, TRUE);
+        $node_local->field_last_good['und'][0]['value'] = 0;
+        node_save($node_local);
+    }
+}
+
+
+
+
+///соболезную тем кто будет потом поддерживать этот проект

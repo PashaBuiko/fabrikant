@@ -79,7 +79,7 @@
             $date =  format_date($comment->created, 'custom', 'd/m/Y H:i');
             $date_full= explode('/', $date);
             $new_format =  switch_month($date_full[1]);
-            print $date_full[0].' '.$new_format.' '.$date_full[2].' '.$date_full[3];
+            print $date_full[0].' '.$new_format.' '.$date_full[2];
             ?></div>
         <?php     print render($content);?>
         <?php // print render($content['links']) ?>

@@ -81,91 +81,75 @@
  * @see template_process()
  */
 ?>
-<div id="node-<?php print $node->nid; ?> "
-     class="<?php print $classes; ?> clearfix node-company"<?php print $attributes; ?>>
+<div id="node-<?php print $node->nid; ?>"
+     class="<?php print $classes; ?> clearfix node-company node-company-news"<?php print $attributes; ?>>
+    <?php $id = $node->field_company['und'][0]['target_id'];
+    $node_company = node_load($id);
+    ?>
 
-    <div class="node-title"> <?php print $node->title; ?></div>
+    <div class="node-title"> <?php print $node_company->title; ?></div>
 
+    <?php
 
-    <div class="main_rating"><?php print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?>
-    </div>
-
-    <?php if (isset($node->field_logo['und'])) {
-    $image = file_create_url($node->field_logo['und'][0]['uri']);
+    print views_embed_view('company_news', 'block_1', $node_company->nid);
 
     ?>
-    <div class="up-block">
-        <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
 
-        <? } ?>
-        <div class="slogan_block">
-            <?php print $node->field_slogan['und'][0]['value'];
-
-            ?>
-            <div class="slogan_text"><?php print $node->field_under_slogan_text['und'][0]['value']; ?></div>
-        </div>
-
-
-        <div class="pb__contacts_block">
-            <div class="left">
-
+    <?php if (isset($node_company->field_logo['und'])) {
+        $image = file_create_url($node_company->field_logo['und'][0]['uri']);
+        ?>
+        <div class="up-block">
+            <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
+            <div class="slogan_block">
+                <?php print  $node_company->field_slogan['und'][0]['value']; ?>
+                <div class="slogan_text"><?php print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
             </div>
-            <div class="right">
-                <div class="field-name-field-address"><?php print render($node->field_address['und'][0]['value']); ?></div>
-                <div class="field-name-field-phone"><?php print render($node->field_phone['und'][0]['value']); ?></div>
-                <div class="field-name-field-schedule"><?php print render($node->field_schedule['und'][0]['value']); ?></div>
+            <div class="pb__contacts_block">
+                <div class="left">
+                </div>
+                <div class="right">
+                    <?php print $node_company->field_address['und'][0]['value']; ?>
+                    <?php print $node_company->field_phone['und'][0]['value']; ?>
+                    <?php print $node_company->field_schedule['und'][0]['value']; ?>
+                </div>
             </div>
         </div>
-    </div>
+    <? } ?>
     <nav class="company-navigation">
-
         <?php
         print company_custom_menu();
 
         ?>
     </nav>
 
-    <div class="tab tab1 active">
-        <div class="left-side">
-            <h2>О компании</h2>
-            <div class="compnay_slider">
-                <div class="field-name-field-slider">
-                    <div class="field-items">
-                        <?php $slider = $node->field_slider['und'];
-                        foreach ($slider as $key => $slide) {
 
-                            $image = file_create_url($slide['uri']);
-                            echo "<div><img src=" . $image . " /></div>";
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
-                <?php print render($node->body['und'][0]['value']); ?>
-            </div>
+    <div class="content"<?php print $content_attributes; ?>>
+        <a href="/tovary" class="return">< Вернуться в каталог товаров</a>
+    </div>
+    <div class="news-content">
+        <h3> <?= $node->title; ?></h3>
+        <p class="date"><?= date('d.m.Y / H:i', $node->created); ?></p>
+        <div class="body">
+            <?= $node->body['und'][0]['value']; ?>
         </div>
-        <div class="right-side">
-            <div class="grey-block">
-                <div class="field-item">   <?php print render($node->field_fabriks_type['und'][0]['value']); ?></div>
-                <div class="field-item">   <?php print render($node->field_unp['und'][0]['value']); ?></div>
-            </div>
-            <div class="news-block">
-                <h2 class="title"> Новости компаний</h2>
-                <?php
-                print views_embed_view('company_goods', 'page_4', $node->nid);
-                ?>
-            </div>
-
-            <div class="baner">
-                <?php ///// left side
-
-                $image = file_create_url($node->field_baner['und'][0]['uri']); ?>
-                <img src="<?= $image; ?>" alt="" class="">
-            </div>
-
+        <div class="socials">
+            <a href="<?= $node->field_facebook['und'][0]['value'];?>" class="facebook"></a>
+            <a href="<?= $node->field_gmail['und'][0]['value'];?>" class="gmail"></a>
+            <a href="<?= $node->field_vk['und'][0]['value'];?>" class="vk"></a>
+            <a href="<?= $node->field_ok['und'][0]['value'];?>" class="ok"></a>
+            <a href="<?= $node->field_twitter['und'][0]['value'];?>" class="twitter"></a>
+            <a href="<?= $node->field_linkedin['und'][0]['value'];?>" class="linkedin"></a>
 
         </div>
+    </div>
+    <div class="comments-block page-company">
+        <?php
+        $viewComs = comment_node_page_additions($node);
+        print drupal_render($viewComs);
+        ?>
+    </div>
+    <div>
+
     </div>
 
 

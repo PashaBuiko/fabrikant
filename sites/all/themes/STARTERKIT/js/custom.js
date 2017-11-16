@@ -127,9 +127,22 @@
                 $('.map-view').addClass('active');
                 $('.table-view').removeClass('active');
             });
+
+           $('#superfish-1 li a').click(function () {
+               window.location.href = $(this).attr('href');
+
+           });
+           $('.company_tags li').click(function(){
+               window.location.href = $(this).find('a').attr('href');
+           })
+            $('.category_company_list .category li a.active').parent().parent().addClass('active');
+
+            var active_company_menu =  $('.company-navigation ul li.active');
+            if ( active_company_menu.length == 0  ){
+                $('.company-navigation ul li.menu-577 ').addClass('active');
+            }
+
         }
-
-
     };
 
 })(jQuery);

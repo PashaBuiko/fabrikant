@@ -112,7 +112,7 @@
 
             <div class="slogan_block">
                 <?php print  $node_company->field_slogan['und'][0]['value']; ?>
-                <div class="slogan_text"><?php print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
+                <div class="slogan_text"><?php  if( isset($node_company->field_under_slogan_text['und']) ) print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
             </div>
 
             <div class="pb__contacts_block">
@@ -163,23 +163,27 @@
             <div class="left-block">
                 <div class="sliders-block">
                     <div class="goods-slider-for">
-                        <?php $slider = $node->field_slider['und'];
-                        foreach ($slider as $key => $slide) {
 
-                            $image = file_create_url($slide['uri']);
-                            echo "<div><img src=" . $image . " /></div>";
+                        <?php
+                        if(isset($node->field_slider['und'])) {
+                            $slider = $node->field_slider['und'];
+                            foreach ($slider as $key => $slide) {
+                                $image = file_create_url($slide['uri']);
+                                echo "<div><img src=" . $image . " /></div>";
+                            }
                         }
-
                         ?>
                     </div>
                     <div class="goods-slider-nav">
-                        <?php $slider = $node->field_slider['und'];
-                        foreach ($slider as $key => $slide) {
+                        <?php
+                        if(isset($node->field_slider['und'])) {
+                            $slider = $node->field_slider['und'];
+                            foreach ($slider as $key => $slide) {
 
-                            $image = file_create_url($slide['uri']);
-                            echo "<div><img src=" . $image . " /></div>";
+                                $image = file_create_url($slide['uri']);
+                                echo "<div><img src=" . $image . " /></div>";
+                            }
                         }
-
                         ?>
                     </div>
                 </div>
@@ -192,13 +196,13 @@
                     <a href="">Заказать</a>
                 </div>
                 <div class="price">
-                     <?= $node->field_price['und'][0]['value']; ?>
+                     <?= (isset($node->field_price['und'][0]['value'])) ? $node->field_price['und'][0]['value'] : ''; ?>
                 </div>
                 <div class="goods-description">
                     <?= $node->body['und'][0]['value']; ?>
                 </div>
                 <div class="goods-params">
-                    <?= $node->field_params['und'][0]['value']; ?>
+                    <?= (isset($node->field_params['und'])) ? $node->field_params['und'][0]['value'] : ''; ?>
                 </div>
             </div>
         </div>
@@ -211,11 +215,11 @@
                 <p>Параметр</p>
             </div>
             <div class="list">
-            <?=  $node->field_characters['und'][0]['value']; ?>
+            <?= (isset($node->field_characters['und'])) ? $node->field_characters['und'][0]['value']: ''; ?>
             </div>
         </div>
         <div class="adding-description">
-            <?=  $node->field_adding_description['und'][0]['value']; ?>
+            <?= (isset($node->field_adding_description['und'])) ? $node->field_adding_description['und'][0]['value'] :''; ?>
         </div>
 
     </div>

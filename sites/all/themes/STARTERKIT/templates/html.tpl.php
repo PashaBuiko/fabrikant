@@ -152,7 +152,7 @@
       vertical: true,
       asNavFor: '.goods-slider-for',
       arrow:true,
-
+      focusOnSelect: true
   });
 
 

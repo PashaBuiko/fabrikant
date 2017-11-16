@@ -304,6 +304,8 @@ function STARTERKIT_preprocess_page(&$variables, $hook)
 }
 
 function company_custom_menu(){
+    if (arg(0) == "search") return;
+
     $menu_array = menu_navigation_links('menu-company-menu');
     $index = 0 ;
     $current_path =explode('/', drupal_get_path_alias($_GET['q']));
@@ -311,7 +313,7 @@ function company_custom_menu(){
 
     foreach($menu_array as $key=> $item){
         switch ($index){
-            case '0' : $menu_array[$key]['href'] = $company_base_path;   break;
+            case '0' : $menu_array[$key]['href'] = $company_base_path.'/about';   break;
             case '1' : $menu_array[$key]['href'] = $company_base_path.'/products'; break;
             case '2' : $menu_array[$key]['href'] = $company_base_path.'/news'; break;
             case '3' : $menu_array[$key]['href'] = $company_base_path.'/gallery'; break;

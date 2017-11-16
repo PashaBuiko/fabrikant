@@ -166,6 +166,8 @@
         <!-- /.section, /#header -->
 
         <div id="main-wrapper">
+            <h1 class="title">Каталог предприятий</h1>
+
             <div class="goods-list tab2 ">
                 <div class="left-side">
                     <div class="term_tree category_company">

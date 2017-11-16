@@ -84,11 +84,8 @@
 <div id="node-<?php print $node->nid; ?> "
      class="<?php print $classes; ?> clearfix node-company"<?php print $attributes; ?>>
 
-    <?php dpm($node); ?>
     <div class="node-title"> <?php print $node->title; ?></div>
 
-    <?php //echo fivestar_widget_form($node); ?>
-    <?php print render($node->field_fivestar); ?>
     <div class="main_rating"><?php print views_embed_view('company_goods', 'block_1', $node->nid); //echo theme_fivestar_static($variables); ?>
     </div>
 
@@ -132,16 +129,7 @@
         <div class="left-side">
             <div class="term_tree">
                 <?php
-                //   dpm( taxonomy_get_tree('goods_category'));
-                //print_r( taxonomy_get_tree(5));
-
-                //  $tree= taxonomy_get_nested_tree(5);
-                // $output=theme_taxonomy_nested_tree($tree);
-                //  echo $output;
-
-
-                echo tax_tree_taxonomy_tree('goods_category');
-
+                    echo tax_tree_taxonomy_tree('goods_category');
                 ?>
             </div>
         </div>
@@ -150,10 +138,9 @@
                 <?php print render($node->field_description['und'][0]['value']); ?>
             </div>
             <?php
-            print views_embed_view('company_goods', 'page', $node->nid);
+                 print views_embed_view('company_goods', 'page', $node->nid);
             ?>
         </div>
-
     </div>
 
 
