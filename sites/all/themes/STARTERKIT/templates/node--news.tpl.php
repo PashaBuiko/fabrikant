@@ -83,62 +83,23 @@
 ?>
 <div id="node-<?php print $node->nid; ?>"
      class="<?php print $classes; ?> clearfix node-company node-company-news"<?php print $attributes; ?>>
-    <?php $id = $node->field_company['und'][0]['target_id'];
-    $node_company = node_load($id);
-    ?>
-
-    <div class="node-title"> <?php print $node_company->title; ?></div>
-
-    <?php
-
-    print views_embed_view('company_news', 'block_1', $node_company->nid);
-
-    ?>
-
-    <?php if (isset($node_company->field_logo['und'])) {
-        $image = file_create_url($node_company->field_logo['und'][0]['uri']);
-        ?>
-        <div class="up-block">
-            <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
-            <div class="slogan_block">
-                <?php print  $node_company->field_slogan['und'][0]['value']; ?>
-                <div class="slogan_text"><?php print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
-            </div>
-            <div class="pb__contacts_block">
-                <div class="left">
-                </div>
-                <div class="right">
-                    <?php print $node_company->field_address['und'][0]['value']; ?>
-                    <?php print $node_company->field_phone['und'][0]['value']; ?>
-                    <?php print $node_company->field_schedule['und'][0]['value']; ?>
-                </div>
-            </div>
-        </div>
-    <? } ?>
-    <nav class="company-navigation">
-        <?php
-        print company_custom_menu();
-
-        ?>
-    </nav>
-
 
     <div class="content"<?php print $content_attributes; ?>>
-        <a href="/tovary" class="return">< Вернуться в каталог товаров</a>
+        <a href="/tovary" class="return">< Вернуться к списку новаостей</a>
     </div>
     <div class="news-content">
         <h3> <?= $node->title; ?></h3>
         <p class="date"><?= date('d.m.Y / H:i', $node->created); ?></p>
         <div class="body">
-            <?= $node->body['und'][0]['value']; ?>
+            <?= (isset($node->body['und'][0]['value'])) ? $node->body['und'][0]['value'] : ''; ?>
         </div>
         <div class="socials">
-            <a href="<?= $node->field_facebook['und'][0]['value'];?>" class="facebook"></a>
-            <a href="<?= $node->field_gmail['und'][0]['value'];?>" class="gmail"></a>
-            <a href="<?= $node->field_vk['und'][0]['value'];?>" class="vk"></a>
-            <a href="<?= $node->field_ok['und'][0]['value'];?>" class="ok"></a>
-            <a href="<?= $node->field_twitter['und'][0]['value'];?>" class="twitter"></a>
-            <a href="<?= $node->field_linkedin['und'][0]['value'];?>" class="linkedin"></a>
+            <a href="<?= (isset($node->field_facebook['und'][0]['value'])) ? $node->field_facebook['und'][0]['value'] : '';?>" class="facebook"></a>
+            <a href="<?= (isset($node->field_gmail['und'][0]['value'])) ? $node->field_gmail['und'][0]['value'] : '';?>" class="gmail"></a>
+            <a href="<?= (isset($node->field_vk['und'][0]['value'])) ? $node->field_vk['und'][0]['value'] : '';?>" class="vk"></a>
+            <a href="<?= (isset($node->field_ok['und'][0]['value'])) ? $node->field_ok['und'][0]['value'] : '';?>" class="ok"></a>
+            <a href="<?= (isset($node->field_twitter['und'][0]['value'])) ? $node->field_twitter['und'][0]['value'] : '';?>" class="twitter"></a>
+            <a href="<?= (isset($node->field_linkedin['und'][0]['value'])) ? $node->field_linkedin['und'][0]['value'] : '';?>" class="linkedin"></a>
 
         </div>
     </div>

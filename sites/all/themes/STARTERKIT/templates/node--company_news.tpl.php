@@ -108,7 +108,7 @@
 
             <div class="slogan_block">
                 <?php print  $node_company->field_slogan['und'][0]['value']; ?>
-                <div class="slogan_text"><?php print  $node_company->field_under_slogan_text['und'][0]['value']; ?></div>
+                <div class="slogan_text"> <?php (isset($node_company->field_under_slogan_text['und'][0]['value']) ) ?  print  $node_company->field_under_slogan_text['und'][0]['value'] : ''; ; ?></div>
             </div>
 
             <div class="pb__contacts_block">
