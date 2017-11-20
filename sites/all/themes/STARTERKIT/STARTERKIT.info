@@ -54,6 +54,7 @@ stylesheets[all][]   = css/my-custom.css
 stylesheets[all][]   = slick/slick.css
 stylesheets[all][]   = slick/slick-theme.css
 stylesheets[all][]   = css/main-style.css
+stylesheets[all][]   = css/responsive.css
 
 ; Add conditional stylesheets that are processed by IE. See the css/README.txt.
 

@@ -121,7 +121,7 @@
     <nav class="company-navigation">
 
         <?php
-        print company_custom_menu();
+        print company_custom_menu($node);
 
         ?>
     </nav>

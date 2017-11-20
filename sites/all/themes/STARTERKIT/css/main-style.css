@@ -1,15 +1,19 @@
 @charset "UTF-8";
+body {
+  font-family: "OpenSans Regular"; }
+
 .views-field-path {
   display: none; }
 
-.views-field-title a:hover {
+.views-field-title a:hover, .return:hover {
   color: #ff991d;
   transition-duration: 0.5s; }
 
-.views-field-title a:not(:hover) {
+.views-field-title a:not(:hover), .return:not(:hover) {
   transition-duration: 0.5s; }
 
 .economic-block-wrapper {
+  font-size: 0;
   position: relative;
   padding-bottom: 65px;
   background: url(../images/shadow-line.png) no-repeat;
@@ -247,7 +251,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         margin-right: 65px;
-        max-width: 370px;
+        max-width: 400px;
         position: relative;
         margin-bottom: 60px; }
         .exhibition .exhibition-list .view-exhibition .views-row:nth-child(2n) {
@@ -932,19 +936,24 @@ footer {
     line-height: 36px;
     /* Приближение из-за подстановки шрифтов */
     text-align: left; }
-  .fivestar-widget .fivestar-oxygen div.fivestar-widget .star {
-    background: url("../images/star-disable.png") no-repeat;
-    width: 32px;
-    height: 32px;
-    margin-right: 5px; }
-    .fivestar-widget .fivestar-oxygen div.fivestar-widget .star a {
-      background: none; }
-    .fivestar-widget .fivestar-oxygen div.fivestar-widget .star:hover {
-      background: url("../images/star-active.png") no-repeat; }
-    .fivestar-widget .fivestar-oxygen div.fivestar-widget .star.on {
-      background: url("../images/star-active.png") no-repeat; }
-  .fivestar-widget .description {
-    display: none; }
+
+body .fivestar-oxygen .star {
+  background-image: none;
+  background: url("../images/star-disable.png") no-repeat;
+  width: 32px;
+  height: 32px;
+  margin-right: 5px; }
+  body .fivestar-oxygen .star a {
+    background-image: none;
+    background: none; }
+  body .fivestar-oxygen .star span:hover, body .fivestar-oxygen .star:hover {
+    background-image: none;
+    background: url("../images/star-active.png") no-repeat; }
+  body .fivestar-oxygen .star span.on, body .fivestar-oxygen .star.on {
+    background-image: none;
+    background: url("../images/star-active.png") no-repeat; }
+body .description {
+  display: none; }
 
 #block-views-economic-news-block-2 .block-title {
   font-family: 'OpenSans Regular';
@@ -1255,11 +1264,10 @@ footer {
   margin-top: -70px; }
   .tab2 .right-side .view-content {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap; }
     .tab2 .right-side .view-content .views-row {
       width: 23.5%;
-      margin-right: 20px;
       -webkit-box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
       box-shadow: 4px 3px 13px -3px rgba(0, 0, 0, 0.75);
@@ -1293,7 +1301,8 @@ footer {
         text-align: center;
         font-size: 24px;
         font-family: "OpenSans SemiBold";
-        margin-bottom: 20px; }
+        margin-bottom: 20px;
+        margin-top: 5px; }
       .tab2 .right-side .view-content .views-row .views-field-title a {
         margin-bottom: 0;
         font-size: 20px;
@@ -1446,7 +1455,8 @@ footer {
       padding-left: 100px; }
       .news-page .right #block-views-economic-news-block-3 img {
         width: 100%;
-        max-width: 460px; }
+        max-width: 460px;
+        margin-top: 50px; }
 
 #block-views-economic-news-block-5 {
   /*.view-content{
@@ -1537,16 +1547,21 @@ footer {
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid:first-child {
   display: none; }
 
+#edit-field-category-gallery-tid .form-item-field-category-gallery-tid {
+  width: 23.5%; }
+
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid img {
   display: block;
-  width: 200px; }
+  width: 100%;
+  height: 100px;
+  height: 100px; }
 
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid label {
   text-align: center;
   font-weight: 600;
   font-size: 14px;
   display: block;
-  width: 90%; }
+  width: 100%; }
 
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid:not(:last-child) label {
   margin-right: 15px; }
@@ -1604,15 +1619,18 @@ footer {
   margin-bottom: 55px;
   padding: 15px;
   padding-left: 30px;
-  background: #ecf0f0; }
+  background: #ecf0f0;
+  font-size: 0; }
   .news-block .title {
     margin: 20px;
+    margin-left: 0;
     text-transform: initial;
     font-family: 'OpenSans Semibold';
     font-size: 24px; }
   .news-block .views-field-field-image,
   .news-block .views-field-field-image- {
     max-width: 100px;
+    width: 40%;
     display: inline-block;
     vertical-align: top; }
     .news-block .views-field-field-image img,
@@ -1620,7 +1638,10 @@ footer {
       width: 100%;
       height: auto; }
   .news-block .views-field-title {
-    margin-left: 15px;
+    padding-left: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     display: inline-block;
     vertical-align: top;
     max-width: 60%; }
@@ -1681,7 +1702,11 @@ h1.title {
   padding: 5px 10px;
   margin-bottom: 20px;
   display: flex;
-  width: 780px; }
+  max-width: 780px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
   .custom_comment.odd:nth-child(2n) {
     background: #fffafa; }
   .custom_comment.even:nth-child(2n-1) {
@@ -1721,11 +1746,21 @@ h1.title {
     display: none; }
 
 .reviews-list {
-  display: flex;
-  justify-content: space-between; }
-  .reviews-list .company_reviews_wrapper {
-    max-width: 65%;
-    max-width: 800px; }
+  width: 67%;
+  max-width: 800px;
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.right-side.review-right {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top; }
+  .right-side.review-right img {
+    width: 100%; }
 
 .indented {
   margin-left: 85px; }
@@ -1746,7 +1781,7 @@ h1.title {
     position: absolute;
     left: 180px;
     top: 35px;
-    width: 400px;
+    width: 330px;
     font-size: 22px;
     line-height: 44px;
     background: #f1f1f1;
@@ -1759,7 +1794,7 @@ h1.title {
     box-sizing: border-box; }
     .page-company #edit-author--2 a.login, .page-company #edit-author--2 a.login-news, .page-company #edit-author--4 a.login, .page-company #edit-author--4 a.login-news {
       top: 35px;
-      left: 600px;
+      left: 550px;
       width: 200px;
       color: white;
       background: #0fa57e; }
@@ -1796,7 +1831,7 @@ h1.title {
   background: #f1f1f1;
   resize: none;
   padding: 10px;
-  max-width: 800px; }
+  max-width: 746px; }
 
 #ajax-comments-reply-form-161-0-0 .form-submit {
   width: 200px;
@@ -2232,7 +2267,8 @@ h1.title {
   text-decoration: none;
   display: block;
   color: black;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-top: 15px; }
 
 .single-good .content-wrapper {
   font-size: 0; }
@@ -2259,7 +2295,7 @@ h1.title {
       z-index: 999;
       width: 30px;
       height: 30px;
-      left: 38px;
+      left: 30px;
       top: 0; }
       .single-good .content-wrapper .left-block .goods-slider-nav .slick-prev:before {
         content: '';
@@ -2281,7 +2317,7 @@ h1.title {
       width: 30px;
       height: 30px;
       top: auto;
-      right: 142px;
+      left: 30px;
       bottom: -10px; }
       .single-good .content-wrapper .left-block .goods-slider-nav .slick-next:before {
         content: '';
@@ -2482,5 +2518,13 @@ h1.title {
     padding: 20px;
     border: 1px solid black;
     margin-bottom: 20px; }
+    .view-search-view .views-row .views-field-title a {
+      margin-top: 0; }
+    .view-search-view .views-row .views-field-field-logo {
+      float: left;
+      margin-right: 20px; }
+
+.news-block .item-list {
+  display: none; }
 
 /*# sourceMappingURL=main-style.css.map */

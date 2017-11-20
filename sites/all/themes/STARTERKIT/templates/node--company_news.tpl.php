@@ -89,18 +89,13 @@
 
     <div class="node-title"> <?php print $node_company->title; ?></div>
 
-
     <?php
-
-
     print views_embed_view('company_goods', 'block_1', $node_company->nid);
-
     ?>
 
 
     <?php if (isset($node_company->field_logo['und'])) {
         $image = file_create_url($node_company->field_logo['und'][0]['uri']);
-
         ?>
         <div class="up-block">
             <div class="image"><img src="<?= $image; ?>" class="logo_image"/></div>
@@ -125,7 +120,7 @@
     <? } ?>
     <nav class="company-navigation">
         <?php
-        print company_custom_menu();
+        print company_custom_menu($node_company);
 
         ?>
     </nav>
@@ -135,7 +130,13 @@
         <a href="/tovary" class="return">< Вернуться в каталог товаров</a>
     </div>
     <div class="news-content">
+
         <h3> <?= $node->title; ?></h3>
+        <div class="news-foto">
+            <?php  $image = file_create_url($node->field_image_['und'][0]['uri']); ?>
+            <img src="<?= $image; ?>" class="logo_image"/>
+
+        </div>
         <p class="date"><?= date('d.m.Y / H:i', $node->created); ?></p>
         <div class="body">
             <?= $node->body['und'][0]['value']; ?>

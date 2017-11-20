@@ -89,9 +89,16 @@
     </div>
     <div class="news-content">
         <h3> <?= $node->title; ?></h3>
+        <div class="news-foto">
+
+            <?php  $image = file_create_url($node->field_image['und'][0]['uri']); ?>
+            <img src="<?= $image; ?>" class="logo_image"/>
+
+        </div>
         <p class="date"><?= date('d.m.Y / H:i', $node->created); ?></p>
+
         <div class="body">
-            <?= (isset($node->body['und'][0]['value'])) ? $node->body['und'][0]['value'] : ''; ?>
+            <?= (isset($node->field_description['und'][0]['value'])) ? $node->field_description['und'][0]['value'] : ''; ?>
         </div>
         <div class="socials">
             <a href="<?= (isset($node->field_facebook['und'][0]['value'])) ? $node->field_facebook['und'][0]['value'] : '';?>" class="facebook"></a>

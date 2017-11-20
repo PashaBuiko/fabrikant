@@ -64,6 +64,7 @@
 <div class="<?php print $classes; ?> clearfix custom_comment"<?php print $attributes; ?>>
 <div class="left">
     <p class="author"><?=$author?></p>
+    <?php if (isset($user->picture)) :?>
     <div class="avatar">
 
         <?php
@@ -73,6 +74,7 @@
     } else{
         print '<img src ="/sites/all/themes/STARTERKIT/images/avatar.png">';
     } ?></div>
+    <?php endif; ?>
 </div>
     <div class="right">
        <div class="comment_date"><?php

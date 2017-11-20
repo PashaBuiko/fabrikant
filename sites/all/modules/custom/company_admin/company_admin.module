@@ -266,12 +266,13 @@ function change_status_last(){
     $query->propertyCondition('status', 1); // фильтр по типу ноды
     $query->fieldCondition('field_last_good', 'value', "1", '=');
     $result = $query->execute();
+    if (isset($result['node'])) {
+        foreach (array_keys($result['node']) as $node_nid) {
 
-    foreach (array_keys($result['node']) as $node_nid) {
-
-        $node_local = node_load($node_nid, NULL, TRUE);
-        $node_local->field_last_good['und'][0]['value'] = 0;
-        node_save($node_local);
+            $node_local = node_load($node_nid, NULL, TRUE);
+            $node_local->field_last_good['und'][0]['value'] = 0;
+            node_save($node_local);
+        }
     }
 }
 

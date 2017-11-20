@@ -763,7 +763,7 @@ nav .container > ul > li > a.active:before {
 #block-views-view-industry-block-2 {
     background: #ecf0f0;
     margin-left: 100px;
-    padding: 35px 35px 35px 80px;
+    padding: 35px 35px 35px 35px;
     margin-top: 50px;
 }
 
@@ -790,7 +790,7 @@ nav .container > ul > li > a.active:before {
 }
 
  #block-views-view-industry-block-2 .views-row {
-    margin-bottom: 70px;
+    margin-bottom: 0px;
     position: relative;
     margin-left: 70px;;
 }

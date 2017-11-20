@@ -99,10 +99,10 @@
 
         <? } ?>
         <div class="slogan_block">
-            <?php print $node->field_slogan['und'][0]['value'];
+            <?php (isset($node->field_slogan['und'][0]['value']))? print $node->field_slogan['und'][0]['value']:"";
 
             ?>
-            <div class="slogan_text"><?php print $node->field_under_slogan_text['und'][0]['value'];            ?></div>
+            <div class="slogan_text"><?php  (isset($node->field_under_slogan_text['und'][0]['value'])) ? print $node->field_under_slogan_text['und'][0]['value'] : "";            ?></div>
         </div>
 
 
@@ -120,7 +120,7 @@
     <nav class="company-navigation">
 
         <?php
-        print company_custom_menu();
+        print company_custom_menu($node);
 
         ?>
     </nav>
@@ -128,6 +128,7 @@
     <div class="tab tab1 active">
         <div class="left-side">
             <h2>О компании</h2>
+            <?php if(isset($node->field_slider['und'])) : ?>
             <div class="compnay_slider">
                 <div class="field-name-field-slider">
                     <div class="field-items">
@@ -141,6 +142,7 @@
                     </div>
                 </div>
             </div>
+            <?php endif;?>
             <div class="content">
                 <?php print render($node->body['und'][0]['value']); ?>
             </div>
@@ -156,11 +158,13 @@
                 print views_embed_view('company_goods', 'page_4', $node->nid);
                 ?>
             </div>
+            <?php if (isset($node->field_baner['und'][0]['uri']))  :?>
             <div class="baner">
                 <?php ///// left side
-                $image = file_create_url($node->field_baner['und'][0]['uri']);                   ?>
+                  $image = file_create_url($node->field_baner['und'][0]['uri']);                   ?>
                 <img src="<?= $image;?>" alt="" class="">
             </div>
+            <? endif;?>
         </div>
     </div>
 </div><!-- /.node -->

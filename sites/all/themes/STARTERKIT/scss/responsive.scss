@@ -1,0 +1,179 @@
+@import "fronzy";
+
+@include fronzymax(1366px) {
+  .economic-block-wrapper .big-news .image div{
+    max-width: 560px !important;
+    width:100% !important;
+  }
+  .economic-block-wrapper .view-economic-news .pager{
+    padding-top:15px;
+  }
+  .exhibition .baner {
+    box-sizing: border-box;
+  }
+  .exhibition .exhibition-list{
+    width:70%;
+  }
+  .exhibition{
+    font-size:0;
+  }
+  footer{
+    padding-left:20px;
+    padding-right:20px;
+  }
+  nav .container > ul{
+    padding-left:0;
+  }
+  .industry-block-wrapper .industry-block .slider-block .item{
+    max-height:460px  !important;
+  }
+  .industry-block-wrapper .industry-block .slider-block{
+    width:50%;
+  }
+  .popular-news .view-view-industry  .views-row{
+    font-size:0;
+  }
+  .industry-block-wrapper .popular-news .image{
+    width:50%;
+  }
+  .popular-news .item{
+    width:50%;
+  }
+  .view-view-industry .views-row{
+    max-width:46%;
+  }
+  .economic-block-wrapper .right-block-news{
+    padding-left:50px;
+  }
+  .economic-block-wrapper .right-block-news .image div{
+    width:100% !important;
+    min-width:225px;
+  }
+  .economic-block-wrapper .view-content .views-row img{
+    width:100%;
+    height:auto;
+  }
+  .exhibition .exhibition-list .view-exhibition .views-row{
+    max-width:360px;
+  }
+  .season-goods .view-season-goods .view-content .left-part .right-block .views-row{
+    margin-right:0;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(1) img{
+    width:260px;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) img{
+    width:260px;
+  }
+  .season-goods .view-season-goods .view-content .left-part .left-block img{
+    width:94%;
+  }
+  header .right-block{
+    margin-right:20px;
+  }
+  .single-good .content-wrapper .left-block .goods-slider-for{
+    width:400px;
+    height:400px;
+  }
+  .single-good .content-wrapper .left-block .goods-slider-nav img {
+    width: 88px;
+    height: 88px;
+  }
+  .new-enterprise .new-enterprise-wrapp .view-new-enterprice .views-row {
+    min-width: 255px;
+  }
+  .view-company-category .view-content .views-row .views-field-field-logo img {
+    max-width: 120px;
+    height: 50px;
+  }
+  .view-company-category .view-content .views-row .views-field-field-advantage-list ul{
+    padding-left:10px;
+    li{
+      width:90%;
+    }
+  }
+
+  .news-page .left #block-views-economic-news-block-2 .views-row-2{
+    margin-right:0;
+    padding-right:10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .news-page .left #block-views-economic-news-block-2 .views-row-3{
+    margin-left:0;
+    padding-left:10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+  }
+  .news-page .left #block-views-economic-news-block-2 .views-row-2, .news-page .left #block-views-economic-news-block-2 .views-row-3{
+    width:50%;
+  }
+  #block-views-economic-news-block-4 .views-field-field-image{
+    width:25%;
+  }
+  .tab2 .right-side .view-content .views-field-field-surprise:before{
+    left: 3px;
+    top: -3px;
+    width:35px;
+  }
+  .tab2 .right-side .view-content .views-field-field-surprise .field-content{
+    padding-left:27px;
+  }
+}
+
+
+
+@include fronzymax(1200px) {
+  .new-enterprise .view-new-enterprice .views-row{
+    min-width:260px;
+  }
+  .view-view-industry .views-row{
+    margin-bottom:0;
+  }
+  .view-display-id-block_1 .views-row{
+    margin-bottom:20px;
+  }
+  .economic-block-wrapper .right-block-news .image{
+    width:40%;
+    img{
+      width:100%;
+    }
+  }
+  .person-block .wrapper .left-block .item .text{
+    width:60%;
+  }
+  .person-block .wrapper .right-block .view-company-news .views-field-title{
+    width:50%;
+  }
+  .exhibition .exhibition-list .view-exhibition .views-row {
+    max-width: 310px;
+  }
+  .season-goods .view-season-goods .view-content .left-part .right-block .views-row img{
+    width:240px;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(1) img {
+    width: 225px;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) img {
+    width: 225px;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) .views-field-title {
+    /* left: 50px; */
+    right: 60px;
+  }
+  .view-display-id-block_1 .views-row {
+    margin-bottom: 4px;
+  }
+  .season-goods .view-season-goods .view-content .right-part .upper-block .views-row:nth-child(2) .views-field-title{
+    width:62%;
+  }
+  #block-views-economic-news-block-4 .views-field-title{
+    width:145px;
+  }
+  #block-views-economic-news-block-5 .views-field-field-description{
+    padding-left:195px;
+  }
+}

@@ -157,8 +157,8 @@ function vud_field_field_formatter_view($entity_type, $entity, $field, $instance
   $elements = array();
   foreach ($items as $delta => $item) {
     $variables = $variables_template;
-    $variables['vud_widget_variables']['widget_theme'] = $instance['settings']['vud_widget'];
-    $variables['vud_widget_variables']['tag'] = $instance['settings']['votingapi_tag'];
+    (isset($instance['settings']['vud_widget'])) ?     $variables['vud_widget_variables']['widget_theme'] = $instance['settings']['vud_widget'] : '';
+      (isset($instance['settings']['votingapi_tag'])) ?  $variables['vud_widget_variables']['tag'] = $instance['settings']['votingapi_tag'] :'';
     $elements[$delta] = array(
       '#markup' => theme('vud_field_formatter_'. $display['type'], $variables),
     );

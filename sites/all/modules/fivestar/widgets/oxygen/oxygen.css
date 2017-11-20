@@ -1,4 +1,5 @@
-/* Static View-only Star Version */
+/*
+!* Static View-only Star Version *!
 .fivestar-oxygen div.fivestar-widget-static .star {
   background-image: url(star.png);
 }
@@ -11,7 +12,7 @@
   background-image: url(star.png);
 }
 
-/* Javascript Star Version */
+!* Javascript Star Version *!
 .fivestar-oxygen div.fivestar-widget .cancel,
 .fivestar-oxygen div.fivestar-widget .cancel a {
   background-image: url(cancel.png);
@@ -25,3 +26,4 @@
 .fivestar-oxygen div.rating div a:hover {
   background-image: url(star.png);
 }
+*/

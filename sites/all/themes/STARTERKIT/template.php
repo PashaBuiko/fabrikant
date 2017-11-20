@@ -303,12 +303,13 @@ function STARTERKIT_preprocess_page(&$variables, $hook)
 
 }
 
-function company_custom_menu(){
+function company_custom_menu($node){
     if (arg(0) == "search") return;
 
     $menu_array = menu_navigation_links('menu-company-menu');
     $index = 0 ;
-    $current_path =explode('/', drupal_get_path_alias($_GET['q']));
+    $alias= drupal_get_path_alias('node/'.$node->nid);
+    $current_path =explode('/', $alias);
     $company_base_path = $current_path[0].'/'.$current_path[1];
 
     foreach($menu_array as $key=> $item){

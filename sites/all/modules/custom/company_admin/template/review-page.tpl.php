@@ -120,7 +120,7 @@
     <nav class="company-navigation">
 
         <?php
-        print company_custom_menu();
+        print company_custom_menu($node);
 
         ?>
     </nav>
@@ -133,8 +133,8 @@
             $viewComs = comment_node_page_additions($node);
             print drupal_render($viewComs);
             ?>
-
-        <div class="right-side">
+        </div>
+        <div class="right-side review-right">
             <div class="grey-block">
 
                 <div > <?php   print render($node->field_fabriks_type['und'][0]['value']);  ?></div>
@@ -156,9 +156,8 @@
 
             ?>
         </div>
-
-
     </div>
+
 
 
 

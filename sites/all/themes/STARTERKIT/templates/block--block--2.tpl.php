@@ -24,7 +24,7 @@ $result = $query->execute();
                       if ($count == 1) { ?>
                         <div class="news_wrapp">
                          <div class="big-news">
-                           <div class=" image"> <a href="/node/<?php print $node->nid; ?>"> <div  style="background: url(<?= $file ?>)no-repeat; background-size:cover; width:480px; height: 480px;"></div> </a></div>
+                           <div class=" image"> <a href="/node/<?php print $node->nid; ?>"> <div  style="background: url(<?= $file ?>)no-repeat; background-size:cover; width:560px; height: 480px;"></div> </a></div>
                              <div class="text"> <a href="/node/<?php print $node->nid; ?> " class="title">   <?php print $node->title; ?></a>
 
                              <div class="description"><?= $node->field_news_description['und'][0]['value'] ;?></div>
