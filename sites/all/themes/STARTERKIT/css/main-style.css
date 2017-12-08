@@ -297,6 +297,8 @@ body {
             position: absolute;
             bottom: -10px;
             left: 0; }
+        .exhibition .exhibition-list .view-exhibition .views-row .views-field-field-description a {
+          text-decoration: none; }
         .exhibition .exhibition-list .view-exhibition .views-row .views-field-field-description p {
           color: white;
           margin-top: 40px;

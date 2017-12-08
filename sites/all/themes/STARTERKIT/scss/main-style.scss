@@ -418,6 +418,10 @@ body {
         }
 
         .views-field-field-description {
+
+          a{
+            text-decoration: none;
+          }
           p {
             color: white;
             margin-top: 40px;
