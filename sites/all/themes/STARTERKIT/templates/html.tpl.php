@@ -154,6 +154,20 @@
       arrow:true,
       focusOnSelect: true
   });
+  jQuery('.news-slider-for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: '.news-slider-nav'
+  });
+  jQuery('.news-slider-nav').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.news-slider-for',
+      arrow:true,
+      focusOnSelect: true
+  });
 
 
 </script>

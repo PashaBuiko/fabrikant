@@ -85,37 +85,107 @@
      class="<?php print $classes; ?> clearfix node-company node-company-news"<?php print $attributes; ?>>
 
     <div class="content"<?php print $content_attributes; ?>>
-        <a href="/tovary" class="return">< Вернуться к списку новаостей</a>
+        <a href="/tovary" class="return">< Вернуться к списку новостей</a>
     </div>
     <div class="news-content">
         <h3> <?= $node->title; ?></h3>
-        <div class="news-foto">
-
-            <?php  $image = file_create_url($node->field_image['und'][0]['uri']); ?>
-            <img src="<?= $image; ?>" class="logo_image"/>
-
-        </div>
         <p class="date"><?= date('d.m.Y / H:i', $node->created); ?></p>
 
-        <div class="body">
-            <?= (isset($node->field_description['und'][0]['value'])) ? $node->field_description['und'][0]['value'] : ''; ?>
-        </div>
-        <div class="socials">
-            <a href="<?= (isset($node->field_facebook['und'][0]['value'])) ? $node->field_facebook['und'][0]['value'] : '';?>" class="facebook"></a>
-            <a href="<?= (isset($node->field_gmail['und'][0]['value'])) ? $node->field_gmail['und'][0]['value'] : '';?>" class="gmail"></a>
-            <a href="<?= (isset($node->field_vk['und'][0]['value'])) ? $node->field_vk['und'][0]['value'] : '';?>" class="vk"></a>
-            <a href="<?= (isset($node->field_ok['und'][0]['value'])) ? $node->field_ok['und'][0]['value'] : '';?>" class="ok"></a>
-            <a href="<?= (isset($node->field_twitter['und'][0]['value'])) ? $node->field_twitter['und'][0]['value'] : '';?>" class="twitter"></a>
-            <a href="<?= (isset($node->field_linkedin['und'][0]['value'])) ? $node->field_linkedin['und'][0]['value'] : '';?>" class="linkedin"></a>
+        <div class="left-block">
+            <div class="news-foto">
 
+          <!--      <?php /*$image = file_create_url($node->field_image['und'][0]['uri']); */?>
+                <img src="<?/*= $image; */?>" class="logo_image"/>
+-->
+                <div class="sliders-block">
+                    <div class="news-slider-for">
+
+                        <?php
+                        if(isset($node->field_slider['und'])) {
+                            $slider = $node->field_slider['und'];
+                            foreach ($slider as $key => $slide) {
+                                $image = file_create_url($slide['uri']);
+                                echo "<div><img src=" . $image . " /></div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="news-slider-nav">
+                        <?php
+                        if(isset($node->field_slider['und'])) {
+                            $slider = $node->field_slider['und'];
+                            foreach ($slider as $key => $slide) {
+
+                                $image = file_create_url($slide['uri']);
+                                echo "<div><img src=" . $image . " /></div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="body">
+                <?= (isset($node->field_description['und'][0]['value'])) ? $node->field_description['und'][0]['value'] : ''; ?>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="socials">
+                <a href="<?= (isset($node->field_facebook['und'][0]['value'])) ? $node->field_facebook['und'][0]['value'] : ''; ?>"
+                   class="facebook"></a>
+                <a href="<?= (isset($node->field_gmail['und'][0]['value'])) ? $node->field_gmail['und'][0]['value'] : ''; ?>"
+                   class="gmail"></a>
+                <a href="<?= (isset($node->field_vk['und'][0]['value'])) ? $node->field_vk['und'][0]['value'] : ''; ?>"
+                   class="vk"></a>
+                <a href="<?= (isset($node->field_ok['und'][0]['value'])) ? $node->field_ok['und'][0]['value'] : ''; ?>"
+                   class="ok"></a>
+                <a href="<?= (isset($node->field_twitter['und'][0]['value'])) ? $node->field_twitter['und'][0]['value'] : ''; ?>"
+                   class="twitter"></a>
+                <a href="<?= (isset($node->field_linkedin['und'][0]['value'])) ? $node->field_linkedin['und'][0]['value'] : ''; ?>"
+                   class="linkedin"></a>
+
+            </div>
+            <div class="comments-block page-company">
+                <?php
+                $viewComs = comment_node_page_additions($node);
+                print drupal_render($viewComs);
+
+                ?>
         </div>
+
+            <div class="right-block">
+                <div class=" view-popular">
+                    <?php
+                    $block = block_load('views', 'view_industry-block_2');
+                    $blocks = _block_render_blocks(array($block));
+                    $blocks_build = _block_get_renderable_array($blocks);
+                    echo drupal_render($blocks_build);
+                    ?>
+                </div>
+                <div class="industry-baner">
+                    <?php
+                    $block = block_load('views', 'view_industry-block_3');
+                    $blocks = _block_render_blocks(array($block));
+                    $blocks_build = _block_get_renderable_array($blocks);
+                    echo drupal_render($blocks_build);
+                    ?>
+
+                </div>
+                <div class="company_news_block">
+                    <?php
+                    $block = block_load('views', 'economic_news-block_4');
+                    $blocks = _block_render_blocks(array($block));
+                    $blocks_build = _block_get_renderable_array($blocks);
+                    echo drupal_render($blocks_build);
+                    ?>
+                </div>
+        </div>
+
     </div>
-    <div class="comments-block page-company">
-        <?php
-        $viewComs = comment_node_page_additions($node);
-        print drupal_render($viewComs);
-        ?>
-    </div>
+
     <div>
 
     </div>

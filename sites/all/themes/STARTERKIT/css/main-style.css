@@ -35,7 +35,7 @@ body {
     display: inline-block;
     vertical-align: top;
     width: 60%;
-    padding-left: 100px;
+    padding-left: 75px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -317,7 +317,7 @@ body {
           left: 20px; }
     .exhibition .exhibition-list .item-list {
       position: absolute;
-      top: -40px;
+      top: -65px;
       margin-left: -160px;
       left: 50%;
       margin-bottom: 40px; }
@@ -761,7 +761,8 @@ footer {
     display: inline-block;
     margin-right: 60px; }
   .registration_company_blank #edit-address .fieldset-wrapper .form-item:nth-child(3) {
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 60px; }
   .registration_company_blank #edit-address .fieldset-wrapper .form-item:nth-child(4) {
     display: inline-block;
     margin-right: 60px; }
@@ -1082,7 +1083,7 @@ body .description {
   width: 44px;
   height: 55px;
   left: -55px;
-  top: -20px; }
+  top: -10px; }
 
 .field-name-field-schedule:before {
   content: '';
@@ -1161,7 +1162,7 @@ body .description {
     z-index: 999;
     width: 30px;
     height: 30px;
-    right: 5px; }
+    right: 0px; }
     .compnay_slider .slick-next:before {
       content: '';
       width: 30px;
@@ -1324,7 +1325,7 @@ body .description {
       position: relative;
       font-family: "OpenSans Regular";
       font-weight: 600; }
-      .tab2 .right-side .view-content .views-field-field-surprise:before {
+      .tab2 .right-side .view-content .views-field-field-surprise .field-content:not(:empty):before {
         content: '';
         position: absolute;
         left: 15px;
@@ -1352,6 +1353,9 @@ body .description {
       text-align: center;
       text-transform: uppercase; }
 
+.view-id-company_goods.view-display-id-page_4 .views-field-title a {
+  font-family: 'OpenSans Regular'; }
+
 .view-company-goods.view-display-id-page_1 .views-field-field-image-,
 .view-company-goods.view-display-id-page_1 .views-field-field-image {
   display: inline-block;
@@ -1375,7 +1379,7 @@ body .description {
 .view-company-goods.view-display-id-page_1 .views-row {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between; }
+  justify-content: flex-start; }
 .view-company-goods.view-display-id-page_1 .vud-widget-alternate .up-active {
   background: url(../images/heart.png) no-repeat;
   -webkit-background-size: 21px 17px;
@@ -1548,7 +1552,8 @@ body .description {
   display: none; }
 
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid {
-  width: 23.5%; }
+  width: 23.5%;
+  cursor: pointer; }
 
 #edit-field-category-gallery-tid .form-item-field-category-gallery-tid img {
   display: block;
@@ -1746,19 +1751,21 @@ h1.title {
     display: none; }
 
 .reviews-list {
-  width: 67%;
-  max-width: 800px;
-  display: inline-block;
+  width: 100%;
+  display: flex;
   vertical-align: top;
   padding-right: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
+  .reviews-list .company_reviews_wrapper {
+    width: 100%; }
 
 .right-side.review-right {
-  width: 30%;
+  width: 40%;
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  padding-left: 0; }
   .right-side.review-right img {
     width: 100%; }
 
@@ -1841,7 +1848,7 @@ h1.title {
   height: 40px;
   font-size: 18px; }
 #ajax-comments-reply-form-161-0-0 #edit-actions {
-  text-align: right;
+  text-align: left;
   max-width: 800px; }
 
 .messages.warning {
@@ -1978,7 +1985,7 @@ h1.title {
     background: #178468; }
 
 .category_company_list ul {
-  padding-left: 0; }
+  padding-left: 10px; }
 
 .category_company_list .item-list li div {
   background: #969e9c;
@@ -2268,7 +2275,9 @@ h1.title {
   display: block;
   color: black;
   margin-bottom: 20px;
-  margin-top: 15px; }
+  margin-top: 15px;
+  font-weight: 600;
+  font-family: "OpenSans Regular"; }
 
 .single-good .content-wrapper {
   font-size: 0; }
@@ -2498,6 +2507,9 @@ h1.title {
 .page-node-260 .goods-list .right-side {
   margin-top: 0; }
 
+.tab2 .right-side .view-content .views-field-field-surprise .field-content:empty:before {
+  display: none; }
+
 .view-search-view.view-id-search_view.view-display-id-page .view-filters {
   display: none; }
 
@@ -2526,5 +2538,130 @@ h1.title {
 
 .news-block .item-list {
   display: none; }
+
+.node-type-news .body {
+  margin-bottom: 20px; }
+
+.item-list {
+  margin-top: 20px; }
+
+.modal-content .webform-client-form label {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-family: "OpenSans Regular"; }
+.modal-content .webform-client-form input {
+  width: 100%;
+  padding: 5px 10px;
+  color: black;
+  font-family: "OpenSans Regular";
+  margin-bottom: 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+.modal-content .webform-client-form .form-item {
+  margin: 0; }
+.modal-content .webform-client-form .form-actions input {
+  background: #0fa57e;
+  height: 40px;
+  line-height: 24px;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border: none; }
+
+div.ctools-modal-content .modal-content {
+  overflow: visible; }
+
+.modal-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: "OpenSans Regular"; }
+
+.news-content {
+  font-size: 0; }
+  .news-content p {
+    font-size: 16px; }
+  .news-content h3 {
+    font-size: 24px; }
+  .news-content .left-block {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+    font-size: 16px; }
+  .news-content .right-block {
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    font-size: 16px; }
+  .news-content #block-views-view-industry-block-2 {
+    margin-top: 0; }
+  .news-content .news-slider-for {
+    margin-bottom: 20px; }
+    .news-content .news-slider-for img {
+      width: 100%;
+      max-width: 314px;
+      max-height: 210px; }
+  .news-content .news-slider-nav {
+    max-width: 320px;
+    max-height: 80px; }
+    .news-content .news-slider-nav div img {
+      width: 100%;
+      max-width: 100px;
+      max-height: 80px; }
+    .news-content .news-slider-nav .slick-prev {
+      background: #0fa57e;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      z-index: 999;
+      width: 30px;
+      height: 30px;
+      left: -15px;
+      top: 50%;
+      margin-top: 0px; }
+      .news-content .news-slider-nav .slick-prev:before {
+        content: '';
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: url(../images/arrow-prev-slider.png) no-repeat;
+        background-position: center;
+        background-size: 12px;
+        top: 0;
+        left: 0; }
+    .news-content .news-slider-nav .slick-next {
+      background: #0fa57e;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      z-index: 999;
+      width: 30px;
+      height: 30px;
+      top: auto;
+      top: 50%;
+      right: -5px;
+      margin-top: 0px; }
+      .news-content .news-slider-nav .slick-next:before {
+        content: '';
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: url(../images/arrow-next-slider.png) no-repeat;
+        background-position: center;
+        background-size: 12px;
+        top: 0;
+        left: 0; }
+  .news-content .sliders-block {
+    max-width: 320px; }
+  .news-content .body {
+    margin-top: -30px; }
+  .news-content .news-foto {
+    float: left;
+    margin-right: 20px; }
+
+.page-company .reviews-list.tab4 {
+  display: inline-block;
+  width: 59%; }
 
 /*# sourceMappingURL=main-style.css.map */

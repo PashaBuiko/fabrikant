@@ -109,6 +109,8 @@ function entity_registration_permission()         /// set new role for module pe
 
 function entity_list()             ///display admin page with aproval
 {
+    drupal_add_js(drupal_get_path('module', 'entity_registration') . '/js/script.js');
+
     $header = array(
         array('data' => t('ID ')),
         array('data' => t('ФИО / Должность ')),
@@ -117,7 +119,7 @@ function entity_list()             ///display admin page with aproval
         array('data' => t('Одобрение'))
     );
     $entity_registration = db_select('entity_registration', 'n')
-        ->fields('n', array('id', 'fio', 'email'))
+        ->fields('n', array('id', 'fio', 'email','status'))
         ->execute()->fetchAll();
     $row = array();
     if ($entity_registration) {
@@ -126,21 +128,18 @@ function entity_list()             ///display admin page with aproval
                 l(t('preview'), 'admin/config/content/entity_registration/' . $e_reg->id . '/preview'),
                 l(t('delete'), 'admin/config/content/entity_registration/' . $e_reg->id . '/delete'),
             );
-            $form = drupal_get_form('company_aproval_form', $e_reg->id  );
+            $checked = '';
+            if($e_reg->status == '1'){
+                $checked = 'checked';
+            }
 
-            $form['id'] = array(
-                '#type' => 'hidden',
-                '#name' => 'id',
-                '#title' => '',
-                '#value' => $e_reg->id
-            );
 
             $row [] = array(
                 array('data' => $e_reg->id),
                 array('data' => $e_reg->fio),
                 array('data' => $e_reg->email),
                 array('data' => implode(' | ', $actions)),
-                array('data' => drupal_render($form))
+                array('data' =>'<input type="checkbox"  name="aprove[]" id ="'.$e_reg->id.' " class="aprove" '.$checked.'  > ')
             );
         }
     }
@@ -148,6 +147,10 @@ function entity_list()             ///display admin page with aproval
         'header' => $header,
         'rows' => $row,
     ));
+    $form = drupal_get_form('company_aproval_form', 0  );
+
+
+    $output.= render($form);
     return $output;
 
 }
@@ -167,30 +170,43 @@ function company_aproval_form($form, &$form_state, $value){         //// form fo
     $form = array();
 
    $entity_registration_status= get_entity_registrtion($value);
-   ( $entity_registration_status[0]->status == 1) ?  $default = true : $default=  false;
+   if (isset($entity_registration_status)) {
+       ($entity_registration_status[0]->status == 1) ? $default = true : $default = false;
+   }
 
-   $form['aprove'] = array(
-        '#type' => 'checkbox',
-        '#title' => '',
-        '#default_value' =>$default
-    );
-    $form['id'] = array(
+
+    $form['id_aprove'] = array(
       '#type'=> 'hidden',
-      '#value' => $value
+      '#id' => 'id_aprove',
+    );
+    $form['action'] = array(
+        '#type'=> 'hidden',
+        '#id' => 'action',
+        '#val' =>'action'
     );
 
     $form['submit'] = array(
         '#type' => 'submit',
+
+        '#id' =>$value,
         '#value' => 'Подтвердить регистрацию'
     );
 
     return $form;
 }
 
-function company_aproval_form_submit($form, &$form_state){         //// form for admin aproval
+function company_aproval_form_submit(array $form, &$form_state){         //// form for admin aproval
 
-    $id =  $form_state['values']['id'];
-    $aprove =  $form_state['values']['aprove'];
+
+
+    $id =  $form_state['values']['id_aprove'];
+    if ($form_state['values']['action'] =="del"){
+        $aprove =  0;
+    }
+    else{
+        $aprove = 1;
+    }
+
 
     $login = 'user-' . drupal_random_key(8);
     $password = drupal_random_key(12);
@@ -210,7 +226,7 @@ function company_aproval_form_submit($form, &$form_state){         //// form for
             ),
         );
         user_save('', $new_user);
-        contact_mail($login, $password);
+        contact_mail($login, $password,$entity_registration[0]->email );
         $uid = get_user_by_login($login);
         $q = db_update('entity_registration'); // выбираем созданную нами таблицу в БД
         $q->fields(
@@ -223,17 +239,53 @@ function company_aproval_form_submit($form, &$form_state){         //// form for
     }
     $uid = get_user_by_login($login);
 
-    $node = new stdClass();
+   /* $node = new stdClass();
+
     $node->type = 'company';
+    node_object_prepare($node);
     $node->title = ' Заголовок поста';
     $node->language = LANGUAGE_NONE;
     $node->body[LANGUAGE_NONE][0]['value'] = 'Текст нашего поста';
     $node->body[LANGUAGE_NONE][0]['summary'] = 'Анонс';
     $node->body[LANGUAGE_NONE][0]['format'] = 'filtered_html';
     $node->uid = $uid;
+    $node->comment = 2;
     $node->status = 1;
     $node->promote = 1;
-    node_save($node);
+   // node_save($node);*/
+
+
+
+    $node = new stdClass(); // Создаем объект node
+    $node->type = "company"; // Определяем тип создаваемого материала
+    node_object_prepare($node); // добавляем настройки по-умолчанию
+
+    $node->title    = "Название"; // Название материала
+    $node->language = LANGUAGE_NONE; // Или например 'ru', если включен модуль locale
+
+    $node->uid = 1; // UID пользователя
+
+// Заполнение поля body
+    $bodytext = 'Текст ноды.';
+$node->body[$node->language][0]['value'] = $bodytext;
+$node->body[$node->language][0]['summary'] = text_summary($bodytext);
+$node->body[$node->language][0]['format']  = 'filtered_html';
+
+$node->path = array('alias' => 'path_to_this_node'); // путь к материалу, для модуля path
+
+// Дополнительные  свойства ноды
+$node->status = 1; // Опуликовано (1) или нет (0)
+$node->promote = 1; // Размещено на главной  (1) или нет (0)
+$node->sticky = 1; // Закреплено вверху списков  (1) или нет (0)
+$node->comment = 2; // Комментарии включены  (2) или нет (1)
+
+if($node = node_submit($node)) { // Подготовка к сохранению
+    node_save($node); // Сохранение ноды, теперь доступен nid новой ноды $node->nid
+}
+
+
+
+
 
 
 
@@ -458,6 +510,8 @@ function company_registration_form_submit($form, &$form_state)
     // сохраняем в переменную результаты запроса
     $res = $q->execute();
 
+
+
     // делаем проверку
     if ($res) {
        //contact_mail($login, $password);
@@ -468,9 +522,9 @@ function company_registration_form_submit($form, &$form_state)
 }
 
 
-function contact_mail($login, $password)
+function contact_mail($login, $password, $email)
 {
-    $to = 'pasha.buiko@mail.ru';
+    $to = $email;
     $subject = 'the subject';
     $message = "<html><head></head><body><b>Спасибо за регистрацию !<br>  Для входа в систему, используйте следующий логин и пароль: <br/>логин : " . $login . "<br> Пароль: " . $password . "<br/></b></body></html>";
     $headers = 'Content-Type: text/html;charset=utf-8' . "\r\n" .

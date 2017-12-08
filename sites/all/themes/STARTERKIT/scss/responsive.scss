@@ -176,4 +176,53 @@
   #block-views-economic-news-block-5 .views-field-field-description{
     padding-left:195px;
   }
+  nav .sf-menu li ul{
+    padding-left:0;
+  }
+  .new-enterprise-wrapp{
+    flex-wrap: wrap;
+  }
+  .new-enterprise-wrapp .right-block {
+    margin:20px auto;
+  }
+  .view-company-category .view-content .views-row .views-field-field-advantage-list{
+    padding-right:10px;
+    width:auto;
+  }
+  .view-company-category .view-content .views-row .views-field-field-short-description{
+    width:auto;
+  }
+  .view-company-category .view-content .views-row .views-field-field-like {
+    top: 50px;
+    right: 15px;
+  }
+  .company_tags ul li a {
+
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+  .node-company .pb__contacts_block .right {
+    padding-left: 15px;
+    padding-top: 30px;
+  }
+  .compnay_slider .slick-initialized .slick-slide img{
+    height:auto;
+  }
+  .compnay_slider .slick-next{
+    right:-3px;
+  }
+  .single-good .content-wrapper .left-block .goods-slider-for {
+    width: 70%;
+    height: 70%;
+    margin-right:15px;
+  }
+  .single-good .content-wrapper .left-block .goods-slider-nav img{
+    width:74px;
+    height:74px;
+  }
+  .single-good .content-wrapper .left-block .goods-slider-nav .slick-prev,
+  .single-good .content-wrapper .left-block .goods-slider-nav .slick-next{
+    left:24px;
+  }
 }

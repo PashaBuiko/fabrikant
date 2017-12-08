@@ -193,7 +193,7 @@
                 <div class="goods-title">
                     <span > <?php print $node->title; ?></span>
 
-                    <a href="">Заказать</a>
+                    <a class="ctools-use-modal ctools-modal-modal-popup-small" href="/modal_forms/nojs/webform/264">Заказать</a>
                 </div>
                 <div class="price">
                      <?= (isset($node->field_price['und'][0]['value'])) ? $node->field_price['und'][0]['value'] : ''; ?>

@@ -2,7 +2,10 @@
     Drupal.behaviors.STARTERKIT = {
         attach: function (context, settings) {
 
-
+            $('input[name="aprove"]').click(function () {
+                var id = $(this).attr('id');
+                console.log(id);
+            })
             /*Add your js code here*/
             $('.view-view-industry #edit-field-list-category-value label ').click(function () {
                 $(this).parent().children().eq(0).click();
@@ -141,6 +144,8 @@
             if ( active_company_menu.length == 0  ){
                 $('.company-navigation ul li.menu-577 ').addClass('active');
             }
+
+
 
         }
     };

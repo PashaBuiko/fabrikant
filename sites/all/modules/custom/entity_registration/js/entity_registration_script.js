@@ -25,6 +25,8 @@
 
             });
 
+
+            alert();
             /* $('#my-first-form input').on('keyup keypress', function(e) {
              if($(this).has('edit-house')){
              var letters=' +-()1234567890';
